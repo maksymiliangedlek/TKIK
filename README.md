@@ -45,3 +45,39 @@
 | `RBRACE` | `}` | Klamra zamykająca blok |
 | `SEMICOLON` | `;` | Separator instrukcji (koniec linii komendy) |
 | `COMMA` | `,` | Separator argumentów |
+
+
+### Gramatyka:
+```antlr
+program: BEGIN instrukcja* END EOF ;
+
+instrukcja: wstaw_naglowek
+          | wstaw_podtytul
+          | wstaw_akapit
+          | wstaw_link
+          | blok_stylu
+          ;
+
+wstaw_naglowek: TITLE STRING SEMICOLON ;
+
+wstaw_podtytul: SUBTITLE STRING SEMICOLON ;
+
+wstaw_akapit: TEXT STRING SEMICOLON ;
+
+wstaw_link: LINK STRING STRING SEMICOLON ; 
+
+blok_stylu: STYLE LBRACE deklaracja_stylu* RBRACE ;
+
+deklaracja_stylu: wlasciwosc_css ASSIGN wartosc SEMICOLON ;
+
+wlasciwosc_css: BG_COLOR 
+              | TEXT_COLOR 
+              | FONT_SIZE 
+              ;
+
+wartosc: STRING 
+       | INTEGER 
+       | HEX_COLOR 
+       | IDENTIFIER 
+       ;
+```
