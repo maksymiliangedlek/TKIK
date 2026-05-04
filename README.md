@@ -17,67 +17,113 @@
 -Interpreter HTML i CSS
 
 ### Planowany język implementacji:
--Python
+-Python, parser LARK
 
-
-### Opis tokenów:
+### Opis tokenów (Lekser)
 
 | Kod Tokena | Reguła / Wartość | Opis |
 | :--- | :--- | :--- |
-| `BEGIN` | `BEGIN` | Otwarcie bloku programu / dokumentu |
-| `END` | `END` | Zamknięcie bloku programu / dokumentu |
-| `TITLE_KW` | `TITLE` | Słowo kluczowe dla nagłówka głównego (generuje `<h1>`) |
-| `SUBTITLE_KW` | `SUBTITLE` | Słowo kluczowe dla podtytułu (generuje `<h2>`) |
-| `TEXT_KW` | `TEXT` lub `PARAGRAPH` | Słowo kluczowe dla akapitu tekstu (generuje `<p>`) |
-| `LINK_KW` | `LINK` | Słowo kluczowe dla hiperłącza (generuje `<a>`) |
-| `STYLE_KW` | `STYLE` | Otwarcie bloku definiowania stylów CSS |
-| `BG_COLOR_KW` | `BG_COLOR` | Właściwość CSS: kolor tła (`background-color`) |
-| `TEXT_COLOR_KW`| `TEXT_COLOR` | Właściwość CSS: kolor tekstu (`color`) |
-| `FONT_SIZE_KW` | `FONT_SIZE` | Właściwość CSS: rozmiar czcionki (`font-size`) |
-| `IDENTIFIER` | `[a-zA-Z_][a-zA-Z0-9_]*` | Nazwy zmiennych lub identyfikatory klas/ID |
-| `STRING` | `"[^"]*"` | Ciąg znaków w cudzysłowach (np. `"Hello world"`) |
-| `INTEGER` | `[0-9]+` | Liczby całkowite (np. do określania pikseli, np. `16`) |
-| `HEX_COLOR` | `#[0-9a-fA-F]{3,6}` | Kolor w formacie heksadecymalnym (np. `#FF0000`) |
-| `ASSIGN` | `=` lub `:=` | Operator przypisania wartości do atrybutu/stylu |
-| `LPAREN` | `(` | Nawias otwierający (np. na parametry tagu) |
+| `BEGIN` | `BEGIN` | Otwarcie bloku dokumentu |
+| `END` | `END` | Zamknięcie bloku dokumentu |
+| `TITLE_KW` | `TITLE` | Nagłówek główny (`<h1>`) |
+| `SUBTITLE_KW` | `SUBTITLE` | Podtytuł (`<h2>`) |
+| `TEXT_KW` | `TEXT` \| `PARAGRAPH` | Akapit tekstu (`<p>`) |
+| `LINK_KW` | `LINK` | Hiperłącze (`<a>`) |
+| `IMG_KW` | `IMAGE` | Obrazek (`<img>`) |
+| `LIST_KW` | `LIST` | Definicja listy wyliczanej (`<ul>`/`<ol>`) |
+| `ITEM_KW` | `ITEM` | Element listy (`<li>`) |
+| `SECTION_KW` | `SECTION` | Kontener strukturalny (`<section>`) |
+| `STYLE_KW` | `STYLE` | Otwarcie bloku definicji stylów |
+| `BG_COLOR_KW` | `BG_COLOR` | Właściwość: kolor tła |
+| `TEXT_COLOR_KW`| `TEXT_COLOR` | Właściwość: kolor tekstu |
+| `FONT_SIZE_KW` | `FONT_SIZE` | Właściwość: rozmiar czcionki |
+| `MARGIN_KW` | `MARGIN` | Właściwość: marginesy zewnętrzne |
+| `PADDING_KW` | `PADDING` | Właściwość: odstępy wewnętrzne |
+| `BORDER_KW` | `BORDER` | Właściwość: obramowanie |
+| `IDENTIFIER` | `[a-zA-Z_][a-zA-Z0-9_]*` | Nazwy własne / identyfikatory klas |
+| `STRING` | `"[^"]*"` | Napis w cudzysłowie |
+| `INTEGER` | `[0-9]+` | Liczby całkowite |
+| `HEX_COLOR` | `#[0-9a-fA-F]{3,6}` | Kod koloru HEX |
+| `ASSIGN` | `=` \| `:=` | Operator przypisania |
+| `LPAREN` | `(` | Nawias otwierający |
 | `RPAREN` | `)` | Nawias zamykający |
-| `LBRACE` | `{` | Klamra otwierająca blok (np. w stylach) |
+| `LBRACE` | `{` | Klamra otwierająca blok |
 | `RBRACE` | `}` | Klamra zamykająca blok |
-| `SEMICOLON` | `;` | Separator instrukcji (koniec linii komendy) |
+| `SEMICOLON` | `;` | Koniec instrukcji |
 | `COMMA` | `,` | Separator argumentów |
 
+---
 
-### Gramatyka:
+### Gramatyka (Parser)
+
 ```antlr
-program: BEGIN instrukcja* END EOF ;
+program
+    : BEGIN instrukcja* END EOF
+    ;
 
-instrukcja: wstaw_naglowek
-          | wstaw_podtytul
-          | wstaw_akapit
-          | wstaw_link
-          | blok_stylu
-          ;
+instrukcja
+    : wstaw_naglowek
+    | wstaw_podtytul
+    | wstaw_akapit
+    | wstaw_link
+    | wstaw_obrazek
+    | wstaw_liste
+    | blok_sekcji
+    | blok_stylu
+    ;
 
-wstaw_naglowek: TITLE STRING SEMICOLON ;
+wstaw_naglowek
+    : TITLE_KW STRING SEMICOLON
+    ;
 
-wstaw_podtytul: SUBTITLE STRING SEMICOLON ;
+wstaw_podtytul
+    : SUBTITLE_KW STRING SEMICOLON
+    ;
 
-wstaw_akapit: TEXT STRING SEMICOLON ;
+wstaw_akapit
+    : TEXT_KW STRING SEMICOLON
+    ;
 
-wstaw_link: LINK STRING STRING SEMICOLON ; 
+wstaw_link
+    : LINK_KW LPAREN STRING COMMA STRING RPAREN SEMICOLON
+    ;
 
-blok_stylu: STYLE LBRACE deklaracja_stylu* RBRACE ;
+wstaw_obrazek
+    : IMG_KW LPAREN STRING RPAREN SEMICOLON
+    ;
 
-deklaracja_stylu: wlasciwosc_css ASSIGN wartosc SEMICOLON ;
+wstaw_liste
+    : LIST_KW IDENTIFIER? LBRACE element_listy+ RBRACE
+    ;
 
-wlasciwosc_css: BG_COLOR 
-              | TEXT_COLOR 
-              | FONT_SIZE 
-              ;
+element_listy
+    : ITEM_KW STRING SEMICOLON
+    ;
 
-wartosc: STRING 
-       | INTEGER 
-       | HEX_COLOR 
-       | IDENTIFIER 
-       ;
-```
+blok_sekcji
+    : SECTION_KW IDENTIFIER LBRACE instrukcja* RBRACE
+    ;
+
+blok_stylu
+    : STYLE_KW IDENTIFIER? LBRACE deklaracja_stylu* RBRACE
+    ;
+
+deklaracja_stylu
+    : wlasciwosc_css ASSIGN wartosc SEMICOLON
+    ;
+
+wlasciwosc_css
+    : BG_COLOR_KW
+    | TEXT_COLOR_KW
+    | FONT_SIZE_KW
+    | MARGIN_KW
+    | PADDING_KW
+    | BORDER_KW
+    ;
+
+wartosc
+    : STRING
+    | INTEGER
+    | HEX_COLOR
+    | IDENTIFIER
+    ;
