@@ -23,107 +23,100 @@
 
 | Kod Tokena | Reguła / Wartość | Opis |
 | :--- | :--- | :--- |
-| `BEGIN` | `BEGIN` | Otwarcie bloku dokumentu |
-| `END` | `END` | Zamknięcie bloku dokumentu |
-| `TITLE_KW` | `TITLE` | Nagłówek główny (`<h1>`) |
-| `SUBTITLE_KW` | `SUBTITLE` | Podtytuł (`<h2>`) |
-| `TEXT_KW` | `TEXT` \| `PARAGRAPH` | Akapit tekstu (`<p>`) |
-| `LINK_KW` | `LINK` | Hiperłącze (`<a>`) |
-| `IMG_KW` | `IMAGE` | Obrazek (`<img>`) |
-| `LIST_KW` | `LIST` | Definicja listy wyliczanej (`<ul>`/`<ol>`) |
-| `ITEM_KW` | `ITEM` | Element listy (`<li>`) |
-| `SECTION_KW` | `SECTION` | Kontener strukturalny (`<section>`) |
-| `STYLE_KW` | `STYLE` | Otwarcie bloku definicji stylów |
-| `BG_COLOR_KW` | `BG_COLOR` | Właściwość: kolor tła |
-| `TEXT_COLOR_KW`| `TEXT_COLOR` | Właściwość: kolor tekstu |
-| `FONT_SIZE_KW` | `FONT_SIZE` | Właściwość: rozmiar czcionki |
-| `MARGIN_KW` | `MARGIN` | Właściwość: marginesy zewnętrzne |
-| `PADDING_KW` | `PADDING` | Właściwość: odstępy wewnętrzne |
-| `BORDER_KW` | `BORDER` | Właściwość: obramowanie |
-| `IDENTIFIER` | `[a-zA-Z_][a-zA-Z0-9_]*` | Nazwy własne / identyfikatory klas |
-| `STRING` | `"[^"]*"` | Napis w cudzysłowie |
-| `INTEGER` | `[0-9]+` | Liczby całkowite |
-| `HEX_COLOR` | `#[0-9a-fA-F]{3,6}` | Kod koloru HEX |
-| `ASSIGN` | `=` \| `:=` | Operator przypisania |
-| `LPAREN` | `(` | Nawias otwierający |
-| `RPAREN` | `)` | Nawias zamykający |
-| `LBRACE` | `{` | Klamra otwierająca blok |
-| `RBRACE` | `}` | Klamra zamykająca blok |
-| `SEMICOLON` | `;` | Koniec instrukcji |
-| `COMMA` | `,` | Separator argumentów |
-
----
+| BEGIN | BEGIN | Otwarcie bloku dokumentu |
+| END | END | Zamknięcie bloku dokumentu |
+| TITLE | TITLE | Nagłówek główny (```<h1>```) |
+| SUBTITLE | SUBTITLE | Podtytuł (```<h2>```) |
+| TEXT | TEXT | Akapit tekstu (```<p>```) |
+| LINK | LINK | Hiperłącze (```<a>```) |
+| IMAGE | IMAGE | Obrazek (```<img>```) |
+| BUTTON | BUTTON | Przycisk akcji (```<button>```) |
+| INPUT | INPUT | Pole tekstowe (```<input type="text">```) |
+| LIST | LIST | Definicja listy wyliczanej (```<ul>/<ol>```) |
+| ITEM | ITEM | Element listy (```<li>```) |
+| SECTION | SECTION | Kontener strukturalny (```<section>```) |
+| DIV | DIV | Pusty kontener blokowy (```<div>```) |
+| FORM | FORM | Kontener formularza (```<form>```) |
+| STYLE | STYLE | Otwarcie bloku definicji stylów |
+| HOVER | HOVER | Styl pseudo-klasy (efekt po najechaniu) |
+| HOVER_CHILD | HOVER_CHILD | Styl zagnieżdżony (zmiana dziecka po najechaniu na rodzica) |
+| CSS_PROP | BG_COLOR, MARGIN_TOP, DISPLAY, BOX_SHADOW... | Właściwości CSS |
+| IDENTIFIER | [a-zA-Z_][a-zA-Z0-9_]* | Nazwy własne / identyfikatory klas |
+| STRING | "[^"]*" | Napis w cudzysłowie |
+| INTEGER | [0-9]+ | Liczby całkowite |
+| HEX_COLOR | #[0-9a-fA-F]{3,6} | Kod koloru HEX |
+| DIMENSION | INTEGER UNIT? | Wartość z jednostką (np. 15px, 100%) |
+| UNIT | px | em | rem | % | pt | vh | vw | Obsługiwane jednostki CSS |
+| LIST_TYPE | ORDERED | UNORDERED | Modyfikatory typu listy |
+| ASSIGN | = | Operator przypisania |
+| LBRACE | { | Klamra otwierająca blok |
+| RBRACE | } | Klamra zamykająca blok |
+| SEMICOLON | ; | Koniec instrukcji |
 
 ### Gramatyka (Parser)
-
-```antlr
-program
-    : BEGIN instrukcja* END EOF
+```
+start
+    : "BEGIN" instruction* "END"
     ;
 
-instrukcja
-    : wstaw_naglowek
-    | wstaw_podtytul
-    | wstaw_akapit
-    | wstaw_link
-    | wstaw_obrazek
-    | wstaw_liste
-    | blok_sekcji
-    | blok_stylu
+?instruction
+    : put_heading
+    | put_subtitle
+    | put_paragraph
+    | put_hyperlink
+    | put_image
+    | put_list
+    | put_button
+    | put_input
+    | put_div
+    | put_section
+    | put_form
+    | block_style
     ;
 
-wstaw_naglowek
-    : TITLE_KW STRING SEMICOLON
+/* --- Instrukcje bazowe --- */
+put_heading   : "TITLE" [IDENTIFIER] STRING ";" ;
+put_subtitle  : "SUBTITLE" [IDENTIFIER] STRING ";" ;
+put_paragraph : "TEXT" [IDENTIFIER] STRING ";" ;
+put_hyperlink : "LINK" STRING STRING ";" ;
+put_image     : "IMAGE" STRING ";" ;
+put_button    : "BUTTON" [IDENTIFIER] STRING ";" ;
+put_input     : "INPUT" [IDENTIFIER] STRING ";" ;
+
+/* --- Listy --- */
+put_list      : "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";" ;
+item          : "ITEM" STRING ";" ;
+
+/* --- Kontenery --- */
+put_div       : "DIV" [IDENTIFIER] "{" instruction* "}" ";" ;
+put_section   : "SECTION" [IDENTIFIER] "{" instruction* "}" ";" ;
+put_form      : "FORM" [IDENTIFIER] "{" instruction* "}" ";" ;
+
+/* --- Style i efekty --- */
+block_style
+    : "STYLE" IDENTIFIER "{" style_declaration* "}"
+    | "HOVER" IDENTIFIER "{" style_declaration* "}"
+    | "HOVER_CHILD" IDENTIFIER IDENTIFIER "{" style_declaration* "}"
     ;
 
-wstaw_podtytul
-    : SUBTITLE_KW STRING SEMICOLON
+style_declaration
+    : css_property "=" value ";"
     ;
 
-wstaw_akapit
-    : TEXT_KW STRING SEMICOLON
+css_property
+    : "BG_COLOR" | "TEXT_COLOR" | "FONT_SIZE" | "FONT_WEIGHT" | "TEXT_ALIGN"
+    | "MARGIN_TOP" | "MARGIN_BOTTOM" | "MARGIN_LEFT" | "MARGIN_RIGHT"
+    | "PADDING_TOP" | "PADDING_BOTTOM" | "PADDING_LEFT" | "PADDING_RIGHT"
+    | "WIDTH" | "HEIGHT" | "BORDER_RADIUS" | "BORDER_WIDTH" | "BORDER_STYLE" | "BORDER_COLOR"
+    | "DISPLAY" | "JUSTIFY_CONTENT" | "ALIGN_ITEMS" | "OPACITY" | "CURSOR"
+    | "POSITION" | "TOP" | "Z_INDEX" | "BOX_SHADOW" | "TRANSITION"
     ;
 
-wstaw_link
-    : LINK_KW LPAREN STRING COMMA STRING RPAREN SEMICOLON
+?value
+    : STRING 
+    | INTEGER 
+    | HEX_COLOR 
+    | IDENTIFIER 
+    | DIMENSION
     ;
-
-wstaw_obrazek
-    : IMG_KW LPAREN STRING RPAREN SEMICOLON
-    ;
-
-wstaw_liste
-    : LIST_KW IDENTIFIER? LBRACE element_listy+ RBRACE
-    ;
-
-element_listy
-    : ITEM_KW STRING SEMICOLON
-    ;
-
-blok_sekcji
-    : SECTION_KW IDENTIFIER LBRACE instrukcja* RBRACE
-    ;
-
-blok_stylu
-    : STYLE_KW IDENTIFIER? LBRACE deklaracja_stylu* RBRACE
-    ;
-
-deklaracja_stylu
-    : wlasciwosc_css ASSIGN wartosc SEMICOLON
-    ;
-
-wlasciwosc_css
-    : BG_COLOR_KW
-    | TEXT_COLOR_KW
-    | FONT_SIZE_KW
-    | MARGIN_KW
-    | PADDING_KW
-    | BORDER_KW
-    ;
-
-wartosc
-    : STRING
-    | INTEGER
-    | HEX_COLOR
-    | IDENTIFIER
-    ;
+```
