@@ -1,16 +1,20 @@
 BEGIN
     STYLE WyroznionyTekst {
         TEXT_COLOR = #ff0000;
-        FONT_SIZE = 24;
+        FONT_SIZE = 24px;
     }
 
     STYLE InnyTekst {
         TEXT_COLOR = #00ff00;
-        FONT_SIZE = 30;
+        FONT_SIZE = 30px;
     }
 
     DIV WyroznionyTekst {
         TITLE "Zwykły nagłówek";
         TEXT InnyTekst "To jest tekst z przypisaną klasą!";
+    };
+
+    DIV {
+                TITLE "Zwykły nagłówek";
     };
 END

@@ -13,6 +13,9 @@ class HtmlTranslator(Transformer):
     def HEX_COLOR(self, h):
         return str(h)
 
+    def DIMENSION(self, d):
+        return str(d)
+
     def put_heading(self, args):
         if len(args) == 2:
             return f"<h1 class={args[0]}>{args[1]}</h1>"
@@ -55,15 +58,23 @@ class HtmlTranslator(Transformer):
         url, label = args
         return f'<a href="{url}">{label}</a>'
 
-    def put_div(self,args):
+    def div_with_class(self,args):
         content_class = args[0]
         content = "".join(args[1:])
         return f"<div class={content_class}>\n{content}</div>"
 
-    def put_section(self,args):
+    def div_no_class(self,args):
+        content = "".join(args)
+        return f"<div>\n{content}</div>"
+
+    def section_with_class(self,args):
         content_class = args[0]
         content = "".join(args[1:])
         return f"<section class={content_class}>\n{content}</section>"
+
+    def section_no_class(self,args):
+        content = "".join(args)
+        return f"<section>\n{content}</section>"
 
     def bg_color(self, _): return "background-color"
 

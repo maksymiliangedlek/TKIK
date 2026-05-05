@@ -16,8 +16,11 @@ put_paragraph: "TEXT" [IDENTIFIER] STRING ";"
 put_hyperlink: "LINK" STRING STRING ";"
 put_image: "IMAGE" STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
-put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";"
-put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";"
+put_div: "DIV" IDENTIFIER "{" instruction* "}" ";" -> div_with_class
+       | "DIV" "{" instruction* "}" ";"            -> div_no_class
+
+put_section: "SECTION" IDENTIFIER "{" instruction* "}" ";"-> section_with_class
+           | "SECTION" "{" instruction* "}" ";"           -> section_no_class
 item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
@@ -27,12 +30,14 @@ css_property: "BG_COLOR" -> bg_color
             | "TEXT_COLOR" -> text_color
             | "FONT_SIZE" -> font_size
 
-?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER
+?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
 
 IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_]*/
 STRING: /"[^"]*"/
 INTEGER: /[0-9]+/
 HEX_COLOR: /#[0-9a-fA-F]{3,6}/
+DIMENSION: INTEGER UNIT?
+UNIT: "px" | "em" | "rem" | "%" | "pt"
 ORDERED: /ORDERED/i
 UNORDERED: /UNORDERED/i
 
