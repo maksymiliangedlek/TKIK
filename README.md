@@ -74,7 +74,6 @@ start
     | block_style
     ;
 
-/* --- Instrukcje bazowe --- */
 put_heading   : "TITLE" [IDENTIFIER] STRING ";" ;
 put_subtitle  : "SUBTITLE" [IDENTIFIER] STRING ";" ;
 put_paragraph : "TEXT" [IDENTIFIER] STRING ";" ;
@@ -83,16 +82,13 @@ put_image     : "IMAGE" STRING ";" ;
 put_button    : "BUTTON" [IDENTIFIER] STRING ";" ;
 put_input     : "INPUT" [IDENTIFIER] STRING ";" ;
 
-/* --- Listy --- */
 put_list      : "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";" ;
 item          : "ITEM" STRING ";" ;
 
-/* --- Kontenery --- */
 put_div       : "DIV" [IDENTIFIER] "{" instruction* "}" ";" ;
 put_section   : "SECTION" [IDENTIFIER] "{" instruction* "}" ";" ;
 put_form      : "FORM" [IDENTIFIER] "{" instruction* "}" ";" ;
 
-/* --- Style i efekty --- */
 block_style
     : "STYLE" IDENTIFIER "{" style_declaration* "}"
     | "HOVER" IDENTIFIER "{" style_declaration* "}"
