@@ -1,38 +1,37 @@
 BEGIN
-    /* =========================================
-       1. DEFINICJE STYLÓW
-       ========================================= */
-
-    /* --- Pasek Nawigacji --- */
+    /* --- PASEK NAWIGACJI (Pełna szerokość) --- */
     STYLE PasekMenu {
         BG_COLOR = #ffffff;
-        PADDING_TOP = 15px;
-        PADDING_BOTTOM = 15px;
-        PADDING_LEFT = 10%;
+        PADDING_TOP = 20px;
+        PADDING_BOTTOM = 20px;
+        PADDING_LEFT = 5%;
+        PADDING_RIGHT = 5%;
         DISPLAY = flex;
+        JUSTIFY_CONTENT = "space-between";
+        ALIGN_ITEMS = center;
+        BOX_SHADOW = "0px 2px 15px rgba(0,0,0,0.04)";
+        POSITION = relative;
+        Z_INDEX = 1000;
+    }
+
+    STYLE Logo {
+        FONT_SIZE = 28px;
+        FONT_WEIGHT = bold;
+        TEXT_COLOR = #598C32;
+        MARGIN_TOP = 0px;
+        MARGIN_BOTTOM = 0px;
+        CURSOR = pointer;
+    }
+
+    STYLE MenuPrawaStrona {
+        DISPLAY = flex;
+        ALIGN_ITEMS = center;
     }
 
     STYLE Zakladka {
         POSITION = relative;
-        PADDING_RIGHT = 30px;
-    }
-
-    STYLE Podmenu {
-        DISPLAY = none;
-        POSITION = absolute;
-        TOP = 100%;
-        Z_INDEX = 100;
-        BG_COLOR = #ffffff;
-        PADDING_TOP = 15px;
-        PADDING_BOTTOM = 0px;
-        PADDING_LEFT = 20px;
-        PADDING_RIGHT = 20px;
-        WIDTH = 180px;
-        BORDER_RADIUS = 8px;
-    }
-
-    HOVER_CHILD Zakladka Podmenu {
-        DISPLAY = block;
+        PADDING_RIGHT = 25px;
+        PADDING_LEFT = 25px;
     }
 
     STYLE TekstMenu {
@@ -40,28 +39,54 @@ BEGIN
         MARGIN_BOTTOM = 0px;
         FONT_SIZE = 16px;
         FONT_WEIGHT = bold;
-        TEXT_COLOR = #2f3640;
+        TEXT_COLOR = #1a2415;
         CURSOR = pointer;
+        TRANSITION = "color 0.2s ease";
+    }
+
+    HOVER TekstMenu {
+        TEXT_COLOR = #598C32;
+    }
+
+    /* --- ROZWIJANE PODMENU --- */
+    STYLE Podmenu {
+        DISPLAY = none;
+        POSITION = absolute;
+        TOP = 100%;
+        Z_INDEX = 100;
+        BG_COLOR = #ffffff;
+        PADDING_TOP = 20px;
+        PADDING_BOTTOM = 5px;
+        PADDING_LEFT = 20px;
+        PADDING_RIGHT = 20px;
+        WIDTH = 200px;
+        BORDER_RADIUS = 12px;
+        BOX_SHADOW = "0px 10px 30px rgba(0,0,0,0.08)";
+    }
+
+    HOVER_CHILD Zakladka Podmenu {
+        DISPLAY = block;
     }
 
     STYLE TekstPodmenu {
         MARGIN_TOP = 0px;
         MARGIN_BOTTOM = 15px;
         FONT_SIZE = 15px;
-        TEXT_COLOR = #718093;
+        TEXT_COLOR = #5a6654;
         CURSOR = pointer;
+        TRANSITION = "color 0.2s ease";
     }
 
     HOVER TekstPodmenu {
-        TEXT_COLOR = #0fbcf9;
+        TEXT_COLOR = #598C32;
     }
 
-    /* --- Ciemna sekcja powitalna --- */
+    /* --- GŁÓWNA SEKCJA (HERO) --- */
     STYLE SekcjaGlowna {
-        BG_COLOR = #1e272e;
+        BG_COLOR = #1a2415; /* Ciemny, elegancki leśny grafit */
         TEXT_COLOR = #ffffff;
-        PADDING_TOP = 100px;
-        PADDING_BOTTOM = 100px;
+        PADDING_TOP = 120px;
+        PADDING_BOTTOM = 120px;
         TEXT_ALIGN = center;
     }
 
@@ -71,126 +96,201 @@ BEGIN
     }
 
     STYLE DuzyTytul {
-        FONT_SIZE = 56px;
+        FONT_SIZE = 64px;
         FONT_WEIGHT = bold;
-        TEXT_COLOR = #0fbcf9;
-        MARGIN_BOTTOM = 20px;
+        TEXT_COLOR = #ffffff;
+        MARGIN_BOTTOM = 25px;
         MARGIN_TOP = 0px;
+    }
+
+    STYLE AkcentTytulu {
+        TEXT_COLOR = #598C32;
     }
 
     STYLE JasnyAkapit {
         FONT_SIZE = 22px;
-        TEXT_COLOR = #d2dae2;
-        MARGIN_BOTTOM = 40px;
+        TEXT_COLOR = #d3d9d0;
+        MARGIN_BOTTOM = 50px;
+        WIDTH = 60%;
+        MARGIN_LEFT = 20%;
     }
 
-    /* --- Przycisk --- */
+    /* --- PRZYCISK GŁÓWNY --- */
     STYLE PrzyciskAkcji {
-        BG_COLOR = #0fbcf9;
-        TEXT_COLOR = #1e272e;
+        BG_COLOR = #598C32;
+        TEXT_COLOR = #ffffff;
         FONT_SIZE = 18px;
         FONT_WEIGHT = bold;
-        PADDING_TOP = 16px;
-        PADDING_BOTTOM = 16px;
-        PADDING_LEFT = 36px;
-        PADDING_RIGHT = 36px;
+        PADDING_TOP = 18px;
+        PADDING_BOTTOM = 18px;
+        PADDING_LEFT = 40px;
+        PADDING_RIGHT = 40px;
         BORDER_RADIUS = 30px;
         BORDER_WIDTH = 0px;
         CURSOR = pointer;
-        /* NOWE: Płynne przejście i delikatny cień */
         TRANSITION = "all 0.3s ease-in-out";
-        BOX_SHADOW = "0px 4px 15px rgba(15, 188, 249, 0.4)";
+        BOX_SHADOW = "0px 6px 20px rgba(89, 140, 50, 0.4)";
     }
 
     HOVER PrzyciskAkcji {
-        BG_COLOR = #4bcffa;
-        /* NOWE: Podnoszenie przycisku (cień staje się większy) */
-        BOX_SHADOW = "0px 8px 25px rgba(15, 188, 249, 0.6)";
+        BG_COLOR = #72ab44;
+        BOX_SHADOW = "0px 10px 30px rgba(89, 140, 50, 0.6)";
     }
 
-    /* --- Pojedyncza Karta --- */
+    /* --- SEKCJA KART (GRID POZIOMY) --- */
+    STYLE SekcjaFunkcji {
+        BG_COLOR = #f5f7f4;
+        PADDING_TOP = 100px;
+        PADDING_BOTTOM = 100px;
+    }
+
+    STYLE GridKarty {
+        DISPLAY = flex;
+        JUSTIFY_CONTENT = "space-between";
+        WIDTH = 80%;
+        MARGIN_LEFT = 10%;
+    }
+
     STYLE Karta {
         BG_COLOR = #ffffff;
-        PADDING_TOP = 30px;
-        PADDING_BOTTOM = 30px;
-        PADDING_LEFT = 30px;
-        PADDING_RIGHT = 30px;
-        BORDER_RADIUS = 12px;
-        MARGIN_BOTTOM = 25px;
-        BORDER_WIDTH = 2px;
-        BORDER_STYLE = solid;
-        BORDER_COLOR = #dfe4ea;
-        /* NOWE: Płynne przejście i startowy miękki cień */
+        WIDTH = 31%;
+        PADDING_TOP = 60px;
+        PADDING_BOTTOM = 60px;
+        PADDING_LEFT = 40px;
+        PADDING_RIGHT = 40px;
+        BORDER_RADIUS = 20px;
+        BORDER_WIDTH = 0px;
         TRANSITION = "all 0.3s ease";
-        BOX_SHADOW = "0px 10px 30px rgba(0,0,0, 0.05)";
+        BOX_SHADOW = "0px 15px 35px rgba(0,0,0, 0.05)";
     }
 
     HOVER Karta {
-        BORDER_COLOR = #0fbcf9;
-        /* NOWE: Karta 'wyskakuje' do przodu przy najechaniu */
-        BOX_SHADOW = "0px 15px 40px rgba(15, 188, 249, 0.15)";
+        BOX_SHADOW = "0px 25px 50px rgba(89, 140, 50, 0.18)";
     }
 
     STYLE TytulKarty {
-        FONT_SIZE = 26px;
-        TEXT_COLOR = #2f3640;
-        MARGIN_BOTTOM = 15px;
+        FONT_SIZE = 28px;
+        TEXT_COLOR = #1a2415;
+        MARGIN_BOTTOM = 25px;
         MARGIN_TOP = 0px;
     }
 
     STYLE TekstKarty {
-        FONT_SIZE = 16px;
-        TEXT_COLOR = #718093;
+        FONT_SIZE = 18px;
+        TEXT_COLOR = #5a6654;
         MARGIN_TOP = 0px;
     }
 
-    /* =========================================
-       2. STRUKTURA DOKUMENTU
-       ========================================= */
+    /* --- NEWSLETTER --- */
+    STYLE SekcjaNewsletter {
+        BG_COLOR = #598C32;
+        PADDING_TOP = 80px;
+        PADDING_BOTTOM = 80px;
+        TEXT_ALIGN = center;
+    }
+
+    STYLE BialyTekst {
+        TEXT_COLOR = #ffffff;
+        MARGIN_BOTTOM = 30px;
+        MARGIN_TOP = 0px;
+    }
+
+    STYLE FormularzZapis {
+        DISPLAY = flex;
+        JUSTIFY_CONTENT = center;
+        ALIGN_ITEMS = center;
+    }
+
+    STYLE PoleEmail {
+        PADDING_TOP = 18px;
+        PADDING_BOTTOM = 18px;
+        PADDING_LEFT = 25px;
+        PADDING_RIGHT = 25px;
+        BORDER_RADIUS = 30px;
+        BORDER_WIDTH = 0px;
+        WIDTH = 320px;
+        MARGIN_RIGHT = 15px;
+        FONT_SIZE = 16px;
+        BOX_SHADOW = "0px 4px 15px rgba(0,0,0, 0.1)";
+    }
+
+    STYLE PrzyciskCiemny {
+        BG_COLOR = #1a2415;
+        TEXT_COLOR = #ffffff;
+        FONT_SIZE = 16px;
+        FONT_WEIGHT = bold;
+        PADDING_TOP = 18px;
+        PADDING_BOTTOM = 18px;
+        PADDING_LEFT = 35px;
+        PADDING_RIGHT = 35px;
+        BORDER_RADIUS = 30px;
+        BORDER_WIDTH = 0px;
+        CURSOR = pointer;
+        TRANSITION = "all 0.3s ease";
+    }
+
+    HOVER PrzyciskCiemny {
+        BG_COLOR = #2e4026;
+    }
+
 
     SECTION PasekMenu {
-        DIV Zakladka {
-            TEXT TekstMenu "Usługi ▾";
-            DIV Podmenu {
-                TEXT TekstPodmenu "Tworzenie stron";
-                TEXT TekstPodmenu "Aplikacje mobilne";
-                TEXT TekstPodmenu "Audyt SEO";
-            };
+        DIV Logo {
+            TEXT Logo "Kaucjapp";
         };
 
-        DIV Zakladka {
-            TEXT TekstMenu "Kontakt";
+        DIV MenuPrawaStrona {
+            DIV Zakladka {
+                TEXT TekstMenu "Aplikacja ▾";
+                DIV Podmenu {
+                    TEXT TekstPodmenu "Mapa Kaucjomatów";
+                    TEXT TekstPodmenu "Wystaw Butelki (P2P)";
+                    TEXT TekstPodmenu "Portfel i Wypłaty";
+                };
+            };
+            DIV Zakladka {
+                TEXT TekstMenu "Dla Sklepów";
+            };
+            DIV Zakladka {
+                TEXT TekstMenu "Kontakt";
+            };
         };
     };
 
     SECTION SekcjaGlowna {
         DIV Kontener {
-            TITLE DuzyTytul "Mój Własny Język Sieciowy";
-            TEXT JasnyAkapit "Strona wygenerowana w 100% za pomocą własnego kompilatora w Pythonie. Zero pisania nudnych tagów HTML!";
-            BUTTON PrzyciskAkcji "Rozpocznij kodowanie";
+            TITLE DuzyTytul "Odzyskuj kaucję bez wychodzenia z domu";
+            TEXT JasnyAkapit "Pierwsza w Polsce platforma P2P systemu kaucyjnego. Sprawdź status najbliższego kaucjomatu lub przekaż swoje butelki komuś, kto odniesie je za Ciebie.";
+            BUTTON PrzyciskAkcji "Dołącz do testów beta";
         };
     };
 
     SECTION SekcjaFunkcji {
-        DIV Kontener {
+        DIV GridKarty {
             DIV Karta {
-                SUBTITLE TytulKarty "Niesamowita Szybkość";
-                TEXT TekstKarty "Nasz parser oparty na bibliotece Lark kompiluje kod w ułamku sekundy bezpośrednio do poprawnego HTML5.";
+                SUBTITLE TytulKarty "Live Mapa Kaucjomatów";
+                TEXT TekstKarty "Awaria? Przepełnienie? Z Kaucjapp zawsze wiesz, gdzie odnieść butelki. Sprawdzaj na żywo status maszyn w Twojej okolicy.";
             };
 
             DIV Karta {
-                SUBTITLE TytulKarty "Nowoczesny Design";
-                TEXT TekstKarty "Pełne wsparcie dla właściwości CSS, obramowań, zaokrąglonych rogów i płynnych efektów najechania myszką.";
+                SUBTITLE TytulKarty "Podziel się kaucją (P2P)";
+                TEXT TekstKarty "Masz 30 butelek, ale brak czasu? Wystaw ofertę w aplikacji. Zgłosi się Zbieracz, który je odbierze, a zyskiem się podzielicie.";
             };
 
             DIV Karta {
-                SUBTITLE TytulKarty "Czysta Składnia";
-                TEXT TekstKarty "Zapomnij o zamykaniu tagów. Skup się na architekturze, a resztę załatwi za Ciebie inteligentny translator.";
+                SUBTITLE TytulKarty "Zarobek i Ekologia";
+                TEXT TekstKarty "Oszczędzasz czas, zarabiasz na butelkach, które inaczej wyrzuciłbyś do śmieci, i realnie wspierasz recykling w swoim mieście.";
             };
+        };
+    };
 
-            DIV Karta {
-                INPUT KlasaInputa "Podaj swój e-mail...";
-            };
+    SECTION SekcjaNewsletter {
+        TITLE DuzyTytul "Bądź pierwszym użytkownikiem";
+        TEXT BialyTekst "Zostaw swój e-mail, aby otrzymać wcześniejszy dostęp do Kaucjapp i darmowy bonus na start.";
+
+        FORM FormularzZapis {
+            INPUT PoleEmail "Twój adres e-mail...";
+            BUTTON PrzyciskCiemny "Zapisz mnie";
         };
     };
 END

@@ -2,21 +2,7 @@ from __future__ import annotations
 
 from lark import Transformer
 
-from src.ast.nodes import (
-    Button,
-    CssDeclaration,
-    Div,
-    Document,
-    Head,
-    Heading,
-    Image,
-    Link,
-    ListBlock,
-    ListItem,
-    Paragraph,
-    Section,
-    StyleRule, Input,
-)
+from src.ast.nodes import *
 
 
 class AstBuilder(Transformer):
@@ -97,6 +83,15 @@ class AstBuilder(Transformer):
             return Input(text=text, class_name=class_name)
         (text,) = args
         return Input(text=text)
+
+    def put_form(self, args):
+        class_name = None
+        children = args
+        if args and isinstance(args[0], str):
+            class_name = args[0]
+            children = args[1:]
+
+        return Form(class_name=class_name, children=list(children))
 
     def put_div(self, args):
         class_name = None

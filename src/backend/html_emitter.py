@@ -40,10 +40,14 @@ class HtmlEmitter:
         ),styles
 
     def _emit_styles(self, head: ast.Head) -> str:
+        reset_css = (
+            "body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }\n"
+            "* { box-sizing: border-box; }\n"
+        )
         if not head.styles:
-            return ""
+            return reset_css
         css = "\n".join(self._emit_style_rule(r) for r in head.styles)
-        return f"{css}\n"
+        return f"{reset_css}{css}\n"
 
     def _emit_style_rule(self, rule: ast.StyleRule) -> str:
         decls = "\n  ".join(f"{d.property_name}: {d.value};" for d in rule.declarations)
@@ -75,6 +79,9 @@ class HtmlEmitter:
             return f"<section{_attr('class', node.class_name)}>\n  {inner}\n</section>"
         if isinstance(node, ast.Input):
             return f'<input type="text"{_attr("class", node.class_name)} placeholder="{_escape_html(node.text)}">'
+        if isinstance(node, ast.Form):
+            inner = "\n  ".join(self._emit_node(c) for c in node.children)
+            return f'<form action="#"{_attr("class", node.class_name)}>\n  {inner}\n</form>'
 
         raise TypeError(f"Unhandled AST node: {type(node)}")
 

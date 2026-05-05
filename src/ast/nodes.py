@@ -73,6 +73,11 @@ class Input:
     text: str
     class_name: str | None = None
 
+@dataclass(frozen=True, slots=True)
+class Form:
+    children: list[Node]
+    class_name: str | None = None
+
 
 
 Node: TypeAlias = Heading | Paragraph | Div | Section | ListBlock | Image | Button | Link

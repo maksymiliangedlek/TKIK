@@ -8,6 +8,7 @@ start: "BEGIN" instruction* "END"
             | put_list
             | put_button
             | put_input
+            | put_form
             | put_div
             | put_section
             | block_style
@@ -20,6 +21,7 @@ put_image: "IMAGE" STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
 put_button: "BUTTON" [IDENTIFIER] STRING ";"
 put_input: "INPUT" [IDENTIFIER] STRING ";"
+put_form: "FORM" [IDENTIFIER] "{" instruction* "}" ";" -> put_form
 
 put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";" -> put_div
 put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";" -> put_section

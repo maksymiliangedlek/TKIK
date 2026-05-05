@@ -1,13 +1,46 @@
+body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+* { box-sizing: border-box; }
 .PasekMenu {
   background-color: #ffffff;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 15px rgba(0,0,0,0.04);
+  position: relative;
+  z-index: 1000;
+}
+.Logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #598C32;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.MenuPrawaStrona {
+  display: flex;
+  align-items: center;
 }
 .Zakladka {
   position: relative;
-  padding-right: 30px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.TekstMenu {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a2415;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.TekstMenu:hover {
+  color: #598C32;
 }
 .Podmenu {
   display: none;
@@ -15,39 +48,33 @@
   top: 100%;
   z-index: 100;
   background-color: #ffffff;
-  padding-top: 15px;
-  padding-bottom: 0px;
+  padding-top: 20px;
+  padding-bottom: 5px;
   padding-left: 20px;
   padding-right: 20px;
-  width: 180px;
-  border-radius: 8px;
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
 }
 .Zakladka:hover .Podmenu {
   display: block;
-}
-.TekstMenu {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #2f3640;
-  cursor: pointer;
 }
 .TekstPodmenu {
   margin-top: 0px;
   margin-bottom: 15px;
   font-size: 15px;
-  color: #718093;
+  color: #5a6654;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 .TekstPodmenu:hover {
-  color: #0fbcf9;
+  color: #598C32;
 }
 .SekcjaGlowna {
-  background-color: #1e272e;
+  background-color: #1a2415;
   color: #ffffff;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 120px;
+  padding-bottom: 120px;
   text-align: center;
 }
 .Kontener {
@@ -55,62 +82,120 @@
   margin-left: 10%;
 }
 .DuzyTytul {
-  font-size: 56px;
+  font-size: 64px;
   font-weight: bold;
-  color: #0fbcf9;
-  margin-bottom: 20px;
+  color: #ffffff;
+  margin-bottom: 25px;
   margin-top: 0px;
+}
+.AkcentTytulu {
+  color: #598C32;
 }
 .JasnyAkapit {
   font-size: 22px;
-  color: #d2dae2;
-  margin-bottom: 40px;
+  color: #d3d9d0;
+  margin-bottom: 50px;
+  width: 60%;
+  margin-left: 20%;
 }
 .PrzyciskAkcji {
-  background-color: #0fbcf9;
-  color: #1e272e;
+  background-color: #598C32;
+  color: #ffffff;
   font-size: 18px;
   font-weight: bold;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 36px;
-  padding-right: 36px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: 30px;
   border-width: 0px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0px 4px 15px rgba(15, 188, 249, 0.4);
+  box-shadow: 0px 6px 20px rgba(89, 140, 50, 0.4);
 }
 .PrzyciskAkcji:hover {
-  background-color: #4bcffa;
-  box-shadow: 0px 8px 25px rgba(15, 188, 249, 0.6);
+  background-color: #72ab44;
+  box-shadow: 0px 10px 30px rgba(89, 140, 50, 0.6);
+}
+.SekcjaFunkcji {
+  background-color: #f5f7f4;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.GridKarty {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 10%;
 }
 .Karta {
   background-color: #ffffff;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #dfe4ea;
+  width: 31%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 20px;
+  border-width: 0px;
   transition: all 0.3s ease;
-  box-shadow: 0px 10px 30px rgba(0,0,0, 0.05);
+  box-shadow: 0px 15px 35px rgba(0,0,0, 0.05);
 }
 .Karta:hover {
-  border-color: #0fbcf9;
-  box-shadow: 0px 15px 40px rgba(15, 188, 249, 0.15);
+  box-shadow: 0px 25px 50px rgba(89, 140, 50, 0.18);
 }
 .TytulKarty {
-  font-size: 26px;
-  color: #2f3640;
-  margin-bottom: 15px;
+  font-size: 28px;
+  color: #1a2415;
+  margin-bottom: 25px;
   margin-top: 0px;
 }
 .TekstKarty {
-  font-size: 16px;
-  color: #718093;
+  font-size: 18px;
+  color: #5a6654;
   margin-top: 0px;
+}
+.SekcjaNewsletter {
+  background-color: #598C32;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  text-align: center;
+}
+.BialyTekst {
+  color: #ffffff;
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+.FormularzZapis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PoleEmail {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 30px;
+  border-width: 0px;
+  width: 320px;
+  margin-right: 15px;
+  font-size: 16px;
+  box-shadow: 0px 4px 15px rgba(0,0,0, 0.1);
+}
+.PrzyciskCiemny {
+  background-color: #1a2415;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 30px;
+  border-width: 0px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.PrzyciskCiemny:hover {
+  background-color: #2e4026;
 }
