@@ -131,6 +131,14 @@ class HtmlTranslator(Transformer):
     def cursor(self, _):
         return "cursor"
 
+    def position(self, _):
+        return "position"
+
+    def top(self, _):
+        return "top"
+    def z_index(self, _):
+        return "z-index"
+
 
     def style_declaration(self, args):
         property_name, value = args
@@ -145,6 +153,11 @@ class HtmlTranslator(Transformer):
         style_name, *declarations = args
         content = "\n  ".join(declarations)
         return f"<style>\n.{style_name}:hover {{\n  {content}\n}}\n</style>"
+
+    def hover_child_style(self, args):
+        parent_class, child_class, *declarations = args
+        content = "\n  ".join(declarations)
+        return f"<style>\n.{parent_class}:hover .{child_class} {{\n  {content}\n}}\n</style>"
 
     def start(self, children):
         head_elements = []

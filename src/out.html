@@ -5,6 +5,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+.PasekMenu {
+  background-color: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10%;
+  display: flex;
+}
+</style>
+  <style>
+.Zakladka {
+  position: relative;
+  padding-right: 30px;
+}
+</style>
+  <style>
+.Podmenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  background-color: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 180px;
+  border-radius: 8px;
+}
+</style>
+  <style>
+.Zakladka:hover .Podmenu {
+  display: block;
+}
+</style>
+  <style>
+.TekstMenu {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2f3640;
+  cursor: pointer;
+}
+</style>
+  <style>
+.TekstPodmenu {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  color: #718093;
+  cursor: pointer;
+}
+</style>
+  <style>
+.TekstPodmenu:hover {
+  color: #0fbcf9;
+}
+</style>
+  <style>
 .SekcjaGlowna {
   background-color: #1e272e;
   color: #ffffff;
@@ -93,6 +152,7 @@
 .TekstKarty {
   font-size: 16px;
   color: #718093;
+  margin-top: 0px;
 }
 </style>
 
@@ -100,7 +160,12 @@
 
 <body>
 
-<section class=SekcjaGlowna>
+<section class=PasekMenu>
+<div class=Zakladka>
+<p class=TekstMenu>Usługi ▾</p><div class=Podmenu>
+<p class=TekstPodmenu>Tworzenie stron</p><p class=TekstPodmenu>Aplikacje mobilne</p><p class=TekstPodmenu>Audyt SEO</p></div></div><div class=Zakladka>
+<p class=TekstMenu>Kontakt</p></div></section>
+  <section class=SekcjaGlowna>
 <div class=Kontener>
 <h1 class=DuzyTytul>Mój Własny Język Sieciowy</h1><p class=JasnyAkapit>Strona wygenerowana w 100% za pomocą własnego kompilatora w Pythonie. Zero pisania nudnych tagów HTML!</p><button class=PrzyciskAkcji>Rozpocznij kodowanie</button></div></section>
   <section class=SekcjaFunkcji>

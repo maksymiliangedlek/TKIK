@@ -27,6 +27,7 @@ item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
            | "HOVER" IDENTIFIER "{" style_declaration* "}" -> hover_style
+           | "HOVER_CHILD" IDENTIFIER IDENTIFIER "{" style_declaration* "}" -> hover_child_style
 style_declaration: css_property "=" value ";"
 
 css_property: "BG_COLOR" -> bg_color
@@ -53,6 +54,9 @@ css_property: "BG_COLOR" -> bg_color
             | "ALIGN_ITEMS" -> align_items
             | "OPACITY" -> opacity
             | "CURSOR" -> cursor
+            | "POSITION" -> position
+            | "TOP" -> top
+            | "Z_INDEX" -> z_index
 
 ?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
 

@@ -3,6 +3,59 @@ BEGIN
        1. DEFINICJE STYLÓW
        ========================================= */
 
+    /* --- Pasek Nawigacji --- */
+    STYLE PasekMenu {
+        BG_COLOR = #ffffff;
+        PADDING_TOP = 15px;
+        PADDING_BOTTOM = 15px;
+        PADDING_LEFT = 10%;
+        DISPLAY = flex;
+    }
+
+    STYLE Zakladka {
+        POSITION = relative;
+        PADDING_RIGHT = 30px;
+    }
+
+    STYLE Podmenu {
+        DISPLAY = none;
+        POSITION = absolute;
+        TOP = 100%;
+        Z_INDEX = 100;
+        BG_COLOR = #ffffff;
+        PADDING_TOP = 15px;
+        PADDING_BOTTOM = 0px;
+        PADDING_LEFT = 20px;
+        PADDING_RIGHT = 20px;
+        WIDTH = 180px;
+        BORDER_RADIUS = 8px;
+    }
+
+    HOVER_CHILD Zakladka Podmenu {
+        DISPLAY = block;
+    }
+
+    STYLE TekstMenu {
+        MARGIN_TOP = 0px;
+        MARGIN_BOTTOM = 0px;
+        FONT_SIZE = 16px;
+        FONT_WEIGHT = bold;
+        TEXT_COLOR = #2f3640;
+        CURSOR = pointer;
+    }
+
+    STYLE TekstPodmenu {
+        MARGIN_TOP = 0px;
+        MARGIN_BOTTOM = 15px;
+        FONT_SIZE = 15px;
+        TEXT_COLOR = #718093;
+        CURSOR = pointer;
+    }
+
+    HOVER TekstPodmenu {
+        TEXT_COLOR = #0fbcf9;
+    }
+
     /* --- Ciemna sekcja powitalna --- */
     STYLE SekcjaGlowna {
         BG_COLOR = #1e272e;
@@ -12,7 +65,6 @@ BEGIN
         TEXT_ALIGN = center;
     }
 
-    /* --- Główny kontener trzymający układ w ryzach --- */
     STYLE Kontener {
         WIDTH = 80%;
         MARGIN_LEFT = 10%;
@@ -32,7 +84,7 @@ BEGIN
         MARGIN_BOTTOM = 40px;
     }
 
-    /* --- Główny przycisk z Hoverem --- */
+    /* --- Przycisk --- */
     STYLE PrzyciskAkcji {
         BG_COLOR = #0fbcf9;
         TEXT_COLOR = #1e272e;
@@ -51,14 +103,13 @@ BEGIN
         BG_COLOR = #4bcffa;
     }
 
-    /* --- Jasna sekcja z funkcjami (karty) --- */
+    /* --- Sekcja kart --- */
     STYLE SekcjaFunkcji {
         BG_COLOR = #f1f2f6;
         PADDING_TOP = 80px;
         PADDING_BOTTOM = 80px;
     }
 
-    /* --- Pojedyncza Karta --- */
     STYLE Karta {
         BG_COLOR = #ffffff;
         PADDING_TOP = 30px;
@@ -86,11 +137,27 @@ BEGIN
     STYLE TekstKarty {
         FONT_SIZE = 16px;
         TEXT_COLOR = #718093;
+        MARGIN_TOP = 0px;
     }
 
     /* =========================================
        2. STRUKTURA DOKUMENTU
        ========================================= */
+
+    SECTION PasekMenu {
+        DIV Zakladka {
+            TEXT TekstMenu "Usługi ▾";
+            DIV Podmenu {
+                TEXT TekstPodmenu "Tworzenie stron";
+                TEXT TekstPodmenu "Aplikacje mobilne";
+                TEXT TekstPodmenu "Audyt SEO";
+            };
+        };
+
+        DIV Zakladka {
+            TEXT TekstMenu "Kontakt";
+        };
+    };
 
     SECTION SekcjaGlowna {
         DIV Kontener {
@@ -102,7 +169,6 @@ BEGIN
 
     SECTION SekcjaFunkcji {
         DIV Kontener {
-
             DIV Karta {
                 SUBTITLE TytulKarty "Niesamowita Szybkość";
                 TEXT TekstKarty "Nasz parser oparty na bibliotece Lark kompiluje kod w ułamku sekundy bezpośrednio do poprawnego HTML5.";
@@ -117,7 +183,6 @@ BEGIN
                 SUBTITLE TytulKarty "Czysta Składnia";
                 TEXT TekstKarty "Zapomnij o zamykaniu tagów. Skup się na architekturze, a resztę załatwi za Ciebie inteligentny translator.";
             };
-
         };
     };
 END
