@@ -6,14 +6,18 @@ start: "BEGIN" instruction* "END"
             | put_hyperlink
             | put_image
             | put_list
+            | put_div
+            | put_section
             | block_style
 
-put_heading: "TITLE" STRING ";"
-put_subtitle: "SUBTITLE" STRING ";"
-put_paragraph: "TEXT" STRING ";"
+put_heading: "TITLE" [IDENTIFIER] STRING ";"
+put_subtitle: "SUBTITLE" [IDENTIFIER] STRING ";"
+put_paragraph: "TEXT" [IDENTIFIER] STRING ";"
 put_hyperlink: "LINK" STRING STRING ";"
 put_image: "IMAGE" STRING ";"
-put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"?
+put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
+put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";"
+put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";"
 item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"

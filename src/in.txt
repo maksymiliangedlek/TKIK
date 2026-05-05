@@ -1,9 +1,16 @@
 BEGIN
-    TITLE "Zakupy";
-
-    LIST ORDERED {
-        ITEM "Mleko";
-        ITEM "Chleb";
-        ITEM "Masło";
+    STYLE WyroznionyTekst {
+        TEXT_COLOR = #ff0000;
+        FONT_SIZE = 24;
     }
+
+    STYLE InnyTekst {
+        TEXT_COLOR = #00ff00;
+        FONT_SIZE = 30;
+    }
+
+    DIV WyroznionyTekst {
+        TITLE "Zwykły nagłówek";
+        TEXT InnyTekst "To jest tekst z przypisaną klasą!";
+    };
 END
