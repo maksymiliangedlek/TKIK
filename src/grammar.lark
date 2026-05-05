@@ -1,0 +1,80 @@
+start: "BEGIN" instruction* "END"
+
+?instruction: put_heading
+            | put_subtitle
+            | put_paragraph
+            | put_hyperlink
+            | put_image
+            | put_list
+            | put_button
+            | put_div
+            | put_section
+            | block_style
+
+put_heading: "TITLE" [IDENTIFIER] STRING ";"
+put_subtitle: "SUBTITLE" [IDENTIFIER] STRING ";"
+put_paragraph: "TEXT" [IDENTIFIER] STRING ";"
+put_hyperlink: "LINK" STRING STRING ";"
+put_image: "IMAGE" STRING ";"
+put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
+put_button: "BUTTON" [IDENTIFIER] STRING ";"
+put_div: "DIV" IDENTIFIER "{" instruction* "}" ";" -> div_with_class
+       | "DIV" "{" instruction* "}" ";"            -> div_no_class
+
+put_section: "SECTION" IDENTIFIER "{" instruction* "}" ";"-> section_with_class
+           | "SECTION" "{" instruction* "}" ";"           -> section_no_class
+item: "ITEM" STRING ";"
+
+block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
+           | "HOVER" IDENTIFIER "{" style_declaration* "}" -> hover_style
+           | "HOVER_CHILD" IDENTIFIER IDENTIFIER "{" style_declaration* "}" -> hover_child_style
+style_declaration: css_property "=" value ";"
+
+css_property: "BG_COLOR" -> bg_color
+            | "TEXT_COLOR" -> text_color
+            | "FONT_SIZE" -> font_size
+            | "FONT_WEIGHT" -> font_weight
+            | "TEXT_ALIGN" -> text_align
+            | "MARGIN_TOP" -> margin_top
+            | "MARGIN_BOTTOM" -> margin_bottom
+            | "MARGIN_LEFT" -> margin_left
+            | "MARGIN_RIGHT" -> margin_right
+            | "PADDING_TOP" -> padding_top
+            | "PADDING_BOTTOM" -> padding_bottom
+            | "PADDING_LEFT" -> padding_left
+            | "PADDING_RIGHT" -> padding_right
+            | "WIDTH" -> width
+            | "HEIGHT" -> height
+            | "BORDER_RADIUS" -> border_radius
+            | "BORDER_WIDTH" -> border_width
+            | "BORDER_STYLE" -> border_style
+            | "BORDER_COLOR" -> border_color
+            | "DISPLAY" -> display
+            | "JUSTIFY_CONTENT" -> justify_content
+            | "ALIGN_ITEMS" -> align_items
+            | "OPACITY" -> opacity
+            | "CURSOR" -> cursor
+            | "POSITION" -> position
+            | "TOP" -> top
+            | "Z_INDEX" -> z_index
+
+?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
+
+IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_]*/
+STRING: /"[^"]*"/
+INTEGER: /[0-9]+/
+HEX_COLOR: /#[0-9a-fA-F]{3,6}/
+DIMENSION: INTEGER UNIT?
+UNIT: "px" | "em" | "rem" | "%" | "pt"
+ORDERED: /ORDERED/i
+UNORDERED: /UNORDERED/i
+
+%import common.WS
+%import common.NEWLINE
+
+%import common.C_COMMENT
+%import common.CPP_COMMENT
+
+%ignore WS
+%ignore C_COMMENT
+%ignore CPP_COMMENT
