@@ -5,13 +5,16 @@ start: "BEGIN" instruction* "END"
             | put_paragraph
             | put_hyperlink
             | put_image
+            | put_list
             | block_style
 
 put_heading: "TITLE" STRING ";"
 put_subtitle: "SUBTITLE" STRING ";"
 put_paragraph: "TEXT" STRING ";"
 put_hyperlink: "LINK" STRING STRING ";"
-put_image: "IMAGE" STRING ;
+put_image: "IMAGE" STRING ";"
+put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"?
+item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
 style_declaration: css_property "=" value ";"
@@ -26,6 +29,8 @@ IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_]*/
 STRING: /"[^"]*"/
 INTEGER: /[0-9]+/
 HEX_COLOR: /#[0-9a-fA-F]{3,6}/
+ORDERED: /ORDERED/i
+UNORDERED: /UNORDERED/i
 
 %import common.WS
 %import common.NEWLINE

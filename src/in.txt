@@ -1,9 +1,9 @@
 BEGIN
-    TITLE "Moja Strona";
-    STYLE MojaKlasa {
-        BG_COLOR = #ff0000;
-        FONT_SIZE = 18;
+    TITLE "Zakupy";
+
+    LIST ORDERED {
+        ITEM "Mleko";
+        ITEM "Chleb";
+        ITEM "Masło";
     }
-    TEXT "Witaj w moim generatorze!";
-    LINK "https://google.com" "Kliknij tutaj";
 END
