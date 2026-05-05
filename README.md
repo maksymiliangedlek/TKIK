@@ -11,10 +11,10 @@
 -Program ma na celu pisaniu w języku HTML i CSS za pomocą prostych poleceń
 
 ### Rodzaj translatora:
--Interpreter
+-Transpiler
 
 ### Planowany wynik działania programu:
--Interpreter HTML i CSS
+-Generator plików statycznych HTML i CSS
 
 ### Planowany język implementacji:
 -Python, parser LARK
