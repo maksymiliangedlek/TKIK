@@ -29,6 +29,17 @@ style_declaration: css_property "=" value ";"
 css_property: "BG_COLOR" -> bg_color
             | "TEXT_COLOR" -> text_color
             | "FONT_SIZE" -> font_size
+            | "MARGIN_TOP" -> margin_top
+            | "MARGIN_BOTTOM" -> margin_bottom
+            | "MARGIN_LEFT" -> margin_left
+            | "MARGIN_RIGHT" -> margin_right
+            | "PADDING_TOP" -> padding_top
+            | "PADDING_BOTTOM" -> padding_bottom
+            | "PADDING_LEFT" -> padding_left
+            | "PADDING_RIGHT" -> padding_right
+            | "WIDTH" -> width
+            | "HEIGHT" -> height
+            | "BORDER_RADIUS" -> border_radius
 
 ?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
 

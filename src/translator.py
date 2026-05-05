@@ -82,6 +82,23 @@ class HtmlTranslator(Transformer):
 
     def font_size(self, _): return "font-size"
 
+    def margin_top(self, _): return "margin-top"
+    def margin_bottom(self, _): return "margin-bottom"
+    def margin_left(self, _): return "margin-left"
+    def margin_right(self, _): return "margin-right"
+
+    def padding_top(self, _): return "padding-top"
+    def padding_bottom(self, _): return "padding-bottom"
+    def padding_left(self, _): return "padding-left"
+    def padding_right(self, _): return "padding-right"
+
+    def width(self, _): return "width"
+
+    def height(self, _): return "height"
+
+    def border_radius(self, _): return "border-radius"
+
+
     def style_declaration(self, args):
         property_name, value = args
         return f"{property_name}: {value};"
