@@ -1,0 +1,201 @@
+body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+* { box-sizing: border-box; }
+.PasekMenu {
+  background-color: #ffffff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 15px rgba(0,0,0,0.04);
+  position: relative;
+  z-index: 1000;
+}
+.Logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #598C32;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.MenuPrawaStrona {
+  display: flex;
+  align-items: center;
+}
+.Zakladka {
+  position: relative;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.TekstMenu {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a2415;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.TekstMenu:hover {
+  color: #598C32;
+}
+.Podmenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  background-color: #ffffff;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
+}
+.Zakladka:hover .Podmenu {
+  display: block;
+}
+.TekstPodmenu {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  color: #5a6654;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.TekstPodmenu:hover {
+  color: #598C32;
+}
+.SekcjaGlowna {
+  background-color: #1a2415;
+  color: #ffffff;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  text-align: center;
+}
+.Kontener {
+  width: 80%;
+  margin-left: 10%;
+}
+.DuzyTytul {
+  font-size: 64px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 25px;
+  margin-top: 0px;
+}
+.AkcentTytulu {
+  color: #598C32;
+}
+.JasnyAkapit {
+  font-size: 22px;
+  color: #d3d9d0;
+  margin-bottom: 50px;
+  width: 60%;
+  margin-left: 20%;
+}
+.PrzyciskAkcji {
+  background-color: #598C32;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 30px;
+  border-width: 0px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 6px 20px rgba(89, 140, 50, 0.4);
+}
+.PrzyciskAkcji:hover {
+  background-color: #72ab44;
+  box-shadow: 0px 10px 30px rgba(89, 140, 50, 0.6);
+}
+.SekcjaFunkcji {
+  background-color: #f5f7f4;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.GridKarty {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 10%;
+}
+.Karta {
+  background-color: #ffffff;
+  width: 31%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 20px;
+  border-width: 0px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 15px 35px rgba(0,0,0, 0.05);
+}
+.Karta:hover {
+  box-shadow: 0px 25px 50px rgba(89, 140, 50, 0.18);
+}
+.TytulKarty {
+  font-size: 28px;
+  color: #1a2415;
+  margin-bottom: 25px;
+  margin-top: 0px;
+}
+.TekstKarty {
+  font-size: 18px;
+  color: #5a6654;
+  margin-top: 0px;
+}
+.SekcjaNewsletter {
+  background-color: #598C32;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  text-align: center;
+}
+.BialyTekst {
+  color: #ffffff;
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+.FormularzZapis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PoleEmail {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 30px;
+  border-width: 0px;
+  width: 320px;
+  margin-right: 15px;
+  font-size: 16px;
+  box-shadow: 0px 4px 15px rgba(0,0,0, 0.1);
+}
+.PrzyciskCiemny {
+  background-color: #1a2415;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 30px;
+  border-width: 0px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.PrzyciskCiemny:hover {
+  background-color: #2e4026;
+}

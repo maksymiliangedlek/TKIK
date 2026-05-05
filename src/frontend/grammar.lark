@@ -7,6 +7,8 @@ start: "BEGIN" instruction* "END"
             | put_image
             | put_list
             | put_button
+            | put_input
+            | put_form
             | put_div
             | put_section
             | block_style
@@ -18,11 +20,12 @@ put_hyperlink: "LINK" STRING STRING ";"
 put_image: "IMAGE" STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
 put_button: "BUTTON" [IDENTIFIER] STRING ";"
-put_div: "DIV" IDENTIFIER "{" instruction* "}" ";" -> div_with_class
-       | "DIV" "{" instruction* "}" ";"            -> div_no_class
+put_input: "INPUT" [IDENTIFIER] STRING ";"
+put_form: "FORM" [IDENTIFIER] "{" instruction* "}" ";" -> put_form
 
-put_section: "SECTION" IDENTIFIER "{" instruction* "}" ";"-> section_with_class
-           | "SECTION" "{" instruction* "}" ";"           -> section_no_class
+put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";" -> put_div
+put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";" -> put_section
+
 item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
@@ -57,6 +60,8 @@ css_property: "BG_COLOR" -> bg_color
             | "POSITION" -> position
             | "TOP" -> top
             | "Z_INDEX" -> z_index
+            | "BOX_SHADOW" -> box_shadow
+            | "TRANSITION" -> transition
 
 ?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
 
@@ -78,3 +83,4 @@ UNORDERED: /UNORDERED/i
 %ignore WS
 %ignore C_COMMENT
 %ignore CPP_COMMENT
+
