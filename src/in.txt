@@ -1,20 +1,123 @@
 BEGIN
-    STYLE WyroznionyTekst {
-        TEXT_COLOR = #ff0000;
-        FONT_SIZE = 24px;
+    /* =========================================
+       1. DEFINICJE STYLÓW
+       ========================================= */
+
+    /* --- Ciemna sekcja powitalna --- */
+    STYLE SekcjaGlowna {
+        BG_COLOR = #1e272e;
+        TEXT_COLOR = #ffffff;
+        PADDING_TOP = 100px;
+        PADDING_BOTTOM = 100px;
+        TEXT_ALIGN = center;
     }
 
-    STYLE InnyTekst {
-        TEXT_COLOR = #00ff00;
-        FONT_SIZE = 30px;
+    /* --- Główny kontener trzymający układ w ryzach --- */
+    STYLE Kontener {
+        WIDTH = 80%;
+        MARGIN_LEFT = 10%;
     }
 
-    DIV WyroznionyTekst {
-        TITLE "Zwykły nagłówek";
-        TEXT InnyTekst "To jest tekst z przypisaną klasą!";
+    STYLE DuzyTytul {
+        FONT_SIZE = 56px;
+        FONT_WEIGHT = bold;
+        TEXT_COLOR = #0fbcf9;
+        MARGIN_BOTTOM = 20px;
+        MARGIN_TOP = 0px;
+    }
+
+    STYLE JasnyAkapit {
+        FONT_SIZE = 22px;
+        TEXT_COLOR = #d2dae2;
+        MARGIN_BOTTOM = 40px;
+    }
+
+    /* --- Główny przycisk z Hoverem --- */
+    STYLE PrzyciskAkcji {
+        BG_COLOR = #0fbcf9;
+        TEXT_COLOR = #1e272e;
+        FONT_SIZE = 18px;
+        FONT_WEIGHT = bold;
+        PADDING_TOP = 16px;
+        PADDING_BOTTOM = 16px;
+        PADDING_LEFT = 36px;
+        PADDING_RIGHT = 36px;
+        BORDER_RADIUS = 30px;
+        BORDER_WIDTH = 0px;
+        CURSOR = pointer;
+    }
+
+    HOVER PrzyciskAkcji {
+        BG_COLOR = #4bcffa;
+    }
+
+    /* --- Jasna sekcja z funkcjami (karty) --- */
+    STYLE SekcjaFunkcji {
+        BG_COLOR = #f1f2f6;
+        PADDING_TOP = 80px;
+        PADDING_BOTTOM = 80px;
+    }
+
+    /* --- Pojedyncza Karta --- */
+    STYLE Karta {
+        BG_COLOR = #ffffff;
+        PADDING_TOP = 30px;
+        PADDING_BOTTOM = 30px;
+        PADDING_LEFT = 30px;
+        PADDING_RIGHT = 30px;
+        BORDER_RADIUS = 12px;
+        MARGIN_BOTTOM = 25px;
+        BORDER_WIDTH = 2px;
+        BORDER_STYLE = solid;
+        BORDER_COLOR = #dfe4ea;
+    }
+
+    HOVER Karta {
+        BORDER_COLOR = #0fbcf9;
+    }
+
+    STYLE TytulKarty {
+        FONT_SIZE = 26px;
+        TEXT_COLOR = #2f3640;
+        MARGIN_BOTTOM = 15px;
+        MARGIN_TOP = 0px;
+    }
+
+    STYLE TekstKarty {
+        FONT_SIZE = 16px;
+        TEXT_COLOR = #718093;
+    }
+
+    /* =========================================
+       2. STRUKTURA DOKUMENTU
+       ========================================= */
+
+    SECTION SekcjaGlowna {
+        DIV Kontener {
+            TITLE DuzyTytul "Mój Własny Język Sieciowy";
+            TEXT JasnyAkapit "Strona wygenerowana w 100% za pomocą własnego kompilatora w Pythonie. Zero pisania nudnych tagów HTML!";
+            BUTTON PrzyciskAkcji "Rozpocznij kodowanie";
+        };
     };
 
-    DIV {
-                BUTTON InnyTekst "Zwykły nagłówek";
+    SECTION SekcjaFunkcji {
+        DIV Kontener {
+
+            DIV Karta {
+                SUBTITLE TytulKarty "Niesamowita Szybkość";
+                TEXT TekstKarty "Nasz parser oparty na bibliotece Lark kompiluje kod w ułamku sekundy bezpośrednio do poprawnego HTML5.";
+            };
+
+            DIV Karta {
+                SUBTITLE TytulKarty "Nowoczesny Design";
+                TEXT TekstKarty "Pełne wsparcie dla właściwości CSS, obramowań, zaokrąglonych rogów i płynnych efektów najechania myszką.";
+            };
+
+            DIV Karta {
+                SUBTITLE TytulKarty "Czysta Składnia";
+                TEXT TekstKarty "Zapomnij o zamykaniu tagów. Skup się na architekturze, a resztę załatwi za Ciebie inteligentny translator.";
+            };
+
+        };
     };
 END

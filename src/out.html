@@ -5,15 +5,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-.WyroznionyTekst {
-  color: #ff0000;
-  font-size: 24px;
+.SekcjaGlowna {
+  background-color: #1e272e;
+  color: #ffffff;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center;
 }
 </style>
   <style>
-.InnyTekst {
-  color: #00ff00;
-  font-size: 30px;
+.Kontener {
+  width: 80%;
+  margin-left: 10%;
+}
+</style>
+  <style>
+.DuzyTytul {
+  font-size: 56px;
+  font-weight: bold;
+  color: #0fbcf9;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+</style>
+  <style>
+.JasnyAkapit {
+  font-size: 22px;
+  color: #d2dae2;
+  margin-bottom: 40px;
+}
+</style>
+  <style>
+.PrzyciskAkcji {
+  background-color: #0fbcf9;
+  color: #1e272e;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 36px;
+  padding-right: 36px;
+  border-radius: 30px;
+  border-width: 0px;
+  cursor: pointer;
+}
+</style>
+  <style>
+.PrzyciskAkcji:hover {
+  background-color: #4bcffa;
+}
+</style>
+  <style>
+.SekcjaFunkcji {
+  background-color: #f1f2f6;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+</style>
+  <style>
+.Karta {
+  background-color: #ffffff;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #dfe4ea;
+}
+</style>
+  <style>
+.Karta:hover {
+  border-color: #0fbcf9;
+}
+</style>
+  <style>
+.TytulKarty {
+  font-size: 26px;
+  color: #2f3640;
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+</style>
+  <style>
+.TekstKarty {
+  font-size: 16px;
+  color: #718093;
 }
 </style>
 
@@ -21,10 +100,15 @@
 
 <body>
 
-<div class=WyroznionyTekst>
-<h1 class=None>Zwykły nagłówek</h1><h1 class=InnyTekst>To jest tekst z przypisaną klasą!</h1></div>
-  <div>
-<button class=InnyTekst>Zwykły nagłówek</button></div>
+<section class=SekcjaGlowna>
+<div class=Kontener>
+<h1 class=DuzyTytul>Mój Własny Język Sieciowy</h1><p class=JasnyAkapit>Strona wygenerowana w 100% za pomocą własnego kompilatora w Pythonie. Zero pisania nudnych tagów HTML!</p><button class=PrzyciskAkcji>Rozpocznij kodowanie</button></div></section>
+  <section class=SekcjaFunkcji>
+<div class=Kontener>
+<div class=Karta>
+<h2 class=TytulKarty>Niesamowita Szybkość</h2><p class=TekstKarty>Nasz parser oparty na bibliotece Lark kompiluje kod w ułamku sekundy bezpośrednio do poprawnego HTML5.</p></div><div class=Karta>
+<h2 class=TytulKarty>Nowoczesny Design</h2><p class=TekstKarty>Pełne wsparcie dla właściwości CSS, obramowań, zaokrąglonych rogów i płynnych efektów najechania myszką.</p></div><div class=Karta>
+<h2 class=TytulKarty>Czysta Składnia</h2><p class=TekstKarty>Zapomnij o zamykaniu tagów. Skup się na architekturze, a resztę załatwi za Ciebie inteligentny translator.</p></div></div></section>
 
 </body>
 

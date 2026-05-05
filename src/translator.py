@@ -23,12 +23,12 @@ class HtmlTranslator(Transformer):
 
     def put_subtitle(self, args):
         if len(args) == 2:
-            return f"<h1 class={args[0]}>{args[1]}</h1>"
+            return f"<h2 class={args[0]}>{args[1]}</h2>"
         return f"<h2>{args[0]}</h2>"
 
     def put_paragraph(self, args):
         if len(args) == 2:
-            return f"<h1 class={args[0]}>{args[1]}</h1>"
+            return f"<p class={args[0]}>{args[1]}</p>"
         return f"<p>{args[0]}</p>"
 
     def put_image(self, args):
@@ -101,6 +101,36 @@ class HtmlTranslator(Transformer):
 
     def border_radius(self, _): return "border-radius"
 
+    def font_weight(self, _):
+        return "font-weight"
+
+    def text_align(self, _):
+        return "text-align"
+
+    def border_width(self, _):
+        return "border-width"
+
+    def border_style(self, _):
+        return "border-style"
+
+    def border_color(self, _):
+        return "border-color"
+
+    def display(self, _):
+        return "display"
+
+    def justify_content(self, _):
+        return "justify-content"
+
+    def align_items(self, _):
+        return "align-items"
+
+    def opacity(self, _):
+        return "opacity"
+
+    def cursor(self, _):
+        return "cursor"
+
 
     def style_declaration(self, args):
         property_name, value = args
@@ -110,6 +140,11 @@ class HtmlTranslator(Transformer):
         style_name, *declarations = args
         content = "\n  ".join(declarations)
         return f"<style>\n.{style_name} {{\n  {content}\n}}\n</style>"
+
+    def hover_style(self, args):
+        style_name, *declarations = args
+        content = "\n  ".join(declarations)
+        return f"<style>\n.{style_name}:hover {{\n  {content}\n}}\n</style>"
 
     def start(self, children):
         head_elements = []

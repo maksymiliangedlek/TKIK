@@ -26,11 +26,14 @@ put_section: "SECTION" IDENTIFIER "{" instruction* "}" ";"-> section_with_class
 item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
+           | "HOVER" IDENTIFIER "{" style_declaration* "}" -> hover_style
 style_declaration: css_property "=" value ";"
 
 css_property: "BG_COLOR" -> bg_color
             | "TEXT_COLOR" -> text_color
             | "FONT_SIZE" -> font_size
+            | "FONT_WEIGHT" -> font_weight
+            | "TEXT_ALIGN" -> text_align
             | "MARGIN_TOP" -> margin_top
             | "MARGIN_BOTTOM" -> margin_bottom
             | "MARGIN_LEFT" -> margin_left
@@ -42,6 +45,14 @@ css_property: "BG_COLOR" -> bg_color
             | "WIDTH" -> width
             | "HEIGHT" -> height
             | "BORDER_RADIUS" -> border_radius
+            | "BORDER_WIDTH" -> border_width
+            | "BORDER_STYLE" -> border_style
+            | "BORDER_COLOR" -> border_color
+            | "DISPLAY" -> display
+            | "JUSTIFY_CONTENT" -> justify_content
+            | "ALIGN_ITEMS" -> align_items
+            | "OPACITY" -> opacity
+            | "CURSOR" -> cursor
 
 ?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
 
