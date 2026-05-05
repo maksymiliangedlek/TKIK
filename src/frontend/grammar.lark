@@ -18,11 +18,10 @@ put_hyperlink: "LINK" STRING STRING ";"
 put_image: "IMAGE" STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
 put_button: "BUTTON" [IDENTIFIER] STRING ";"
-put_div: "DIV" IDENTIFIER "{" instruction* "}" ";" -> div_with_class
-       | "DIV" "{" instruction* "}" ";"            -> div_no_class
 
-put_section: "SECTION" IDENTIFIER "{" instruction* "}" ";"-> section_with_class
-           | "SECTION" "{" instruction* "}" ";"           -> section_no_class
+put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";" -> put_div
+put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";" -> put_section
+
 item: "ITEM" STRING ";"
 
 block_style: "STYLE" IDENTIFIER "{" style_declaration* "}"
@@ -78,3 +77,4 @@ UNORDERED: /UNORDERED/i
 %ignore WS
 %ignore C_COMMENT
 %ignore CPP_COMMENT
+
