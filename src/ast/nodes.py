@@ -68,6 +68,11 @@ class Link:
     url: str
     label: str
 
+@dataclass(frozen=True, slots=True)
+class Input:
+    text: str
+    class_name: str | None = None
+
 
 
 Node: TypeAlias = Heading | Paragraph | Div | Section | ListBlock | Image | Button | Link

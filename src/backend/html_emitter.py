@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import is_dataclass
+from typing import Tuple
 
 from src.ast import nodes as ast
 
@@ -21,8 +22,8 @@ def _attr(name: str, value: str | None) -> str:
 
 
 class HtmlEmitter:
-    def emit(self, doc: ast.Document) -> str:
-        head = self._emit_head(doc.head)
+    def emit(self, doc: ast.Document) -> Tuple[str,str]:
+        styles = self._emit_styles(doc.head)
         body = "\n  ".join(self._emit_node(n) for n in doc.body)
         return (
             "<!DOCTYPE html>\n"
@@ -30,19 +31,19 @@ class HtmlEmitter:
             "<head>\n\n"
             '<meta charset="UTF-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
-            f"{head}"
+            '<link rel="stylesheet" href="out.css">'
             "\n</head>\n\n"
             "<body>\n\n"
             f"  {body}\n\n"
             "</body>\n\n"
             "</html>"
-        )
+        ),styles
 
-    def _emit_head(self, head: ast.Head) -> str:
+    def _emit_styles(self, head: ast.Head) -> str:
         if not head.styles:
             return ""
         css = "\n".join(self._emit_style_rule(r) for r in head.styles)
-        return f"\n<style>\n{css}\n</style>\n"
+        return f"{css}\n"
 
     def _emit_style_rule(self, rule: ast.StyleRule) -> str:
         decls = "\n  ".join(f"{d.property_name}: {d.value};" for d in rule.declarations)
@@ -72,6 +73,8 @@ class HtmlEmitter:
         if isinstance(node, ast.Section):
             inner = "\n  ".join(self._emit_node(c) for c in node.children)
             return f"<section{_attr('class', node.class_name)}>\n  {inner}\n</section>"
+        if isinstance(node, ast.Input):
+            return f'<input type="text"{_attr("class", node.class_name)} placeholder="{_escape_html(node.text)}">'
 
         raise TypeError(f"Unhandled AST node: {type(node)}")
 

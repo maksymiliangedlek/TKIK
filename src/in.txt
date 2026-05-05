@@ -97,19 +97,18 @@ BEGIN
         BORDER_RADIUS = 30px;
         BORDER_WIDTH = 0px;
         CURSOR = pointer;
+        /* NOWE: Płynne przejście i delikatny cień */
+        TRANSITION = "all 0.3s ease-in-out";
+        BOX_SHADOW = "0px 4px 15px rgba(15, 188, 249, 0.4)";
     }
 
     HOVER PrzyciskAkcji {
         BG_COLOR = #4bcffa;
+        /* NOWE: Podnoszenie przycisku (cień staje się większy) */
+        BOX_SHADOW = "0px 8px 25px rgba(15, 188, 249, 0.6)";
     }
 
-    /* --- Sekcja kart --- */
-    STYLE SekcjaFunkcji {
-        BG_COLOR = #f1f2f6;
-        PADDING_TOP = 80px;
-        PADDING_BOTTOM = 80px;
-    }
-
+    /* --- Pojedyncza Karta --- */
     STYLE Karta {
         BG_COLOR = #ffffff;
         PADDING_TOP = 30px;
@@ -121,10 +120,15 @@ BEGIN
         BORDER_WIDTH = 2px;
         BORDER_STYLE = solid;
         BORDER_COLOR = #dfe4ea;
+        /* NOWE: Płynne przejście i startowy miękki cień */
+        TRANSITION = "all 0.3s ease";
+        BOX_SHADOW = "0px 10px 30px rgba(0,0,0, 0.05)";
     }
 
     HOVER Karta {
         BORDER_COLOR = #0fbcf9;
+        /* NOWE: Karta 'wyskakuje' do przodu przy najechaniu */
+        BOX_SHADOW = "0px 15px 40px rgba(15, 188, 249, 0.15)";
     }
 
     STYLE TytulKarty {
@@ -182,6 +186,10 @@ BEGIN
             DIV Karta {
                 SUBTITLE TytulKarty "Czysta Składnia";
                 TEXT TekstKarty "Zapomnij o zamykaniu tagów. Skup się na architekturze, a resztę załatwi za Ciebie inteligentny translator.";
+            };
+
+            DIV Karta {
+                INPUT KlasaInputa "Podaj swój e-mail...";
             };
         };
     };

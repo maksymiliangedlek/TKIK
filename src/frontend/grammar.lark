@@ -7,6 +7,7 @@ start: "BEGIN" instruction* "END"
             | put_image
             | put_list
             | put_button
+            | put_input
             | put_div
             | put_section
             | block_style
@@ -18,6 +19,7 @@ put_hyperlink: "LINK" STRING STRING ";"
 put_image: "IMAGE" STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
 put_button: "BUTTON" [IDENTIFIER] STRING ";"
+put_input: "INPUT" [IDENTIFIER] STRING ";"
 
 put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";" -> put_div
 put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";" -> put_section
@@ -56,6 +58,8 @@ css_property: "BG_COLOR" -> bg_color
             | "POSITION" -> position
             | "TOP" -> top
             | "Z_INDEX" -> z_index
+            | "BOX_SHADOW" -> box_shadow
+            | "TRANSITION" -> transition
 
 ?value: STRING | INTEGER | HEX_COLOR | IDENTIFIER | DIMENSION
 

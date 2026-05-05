@@ -15,7 +15,7 @@ from src.ast.nodes import (
     ListItem,
     Paragraph,
     Section,
-    StyleRule,
+    StyleRule, Input,
 )
 
 
@@ -91,6 +91,13 @@ class AstBuilder(Transformer):
             items = args[1:]
         return ListBlock(ordered=ordered, items=list(items))
 
+    def put_input(self, args):
+        if len(args) == 2:
+            class_name, text = args
+            return Input(text=text, class_name=class_name)
+        (text,) = args
+        return Input(text=text)
+
     def put_div(self, args):
         class_name = None
         children = args
@@ -140,6 +147,8 @@ class AstBuilder(Transformer):
     def position(self, _): return "position"
     def top(self, _): return "top"
     def z_index(self, _): return "z-index"
+    def box_shadow(self, _): return "box-shadow"
+    def transition(self, _): return "transition"
 
     def style_declaration(self, args):
         prop, value = args
