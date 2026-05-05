@@ -58,6 +58,9 @@ class HtmlTranslator(Transformer):
         url, label = args
         return f'<a href="{url}">{label}</a>'
 
+    def put_button(self, args):
+        return f"<button class={args[0]}>{args[1]}</button>"
+
     def div_with_class(self,args):
         content_class = args[0]
         content = "".join(args[1:])

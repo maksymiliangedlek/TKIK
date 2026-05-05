@@ -15,6 +15,6 @@ BEGIN
     };
 
     DIV {
-                TITLE "Zwykły nagłówek";
+                BUTTON InnyTekst "Zwykły nagłówek";
     };
 END

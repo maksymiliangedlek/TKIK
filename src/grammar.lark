@@ -6,6 +6,7 @@ start: "BEGIN" instruction* "END"
             | put_hyperlink
             | put_image
             | put_list
+            | put_button
             | put_div
             | put_section
             | block_style
@@ -16,6 +17,7 @@ put_paragraph: "TEXT" [IDENTIFIER] STRING ";"
 put_hyperlink: "LINK" STRING STRING ";"
 put_image: "IMAGE" STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
+put_button: "BUTTON" [IDENTIFIER] STRING ";"
 put_div: "DIV" IDENTIFIER "{" instruction* "}" ";" -> div_with_class
        | "DIV" "{" instruction* "}" ";"            -> div_no_class
 
