@@ -46,8 +46,8 @@
 | INTEGER | [0-9]+ | Liczby całkowite |
 | HEX_COLOR | #[0-9a-fA-F]{3,6} | Kod koloru HEX |
 | DIMENSION | INTEGER UNIT? | Wartość z jednostką (np. 15px, 100%) |
-| UNIT | px | em | rem | % | pt | vh | vw | Obsługiwane jednostki CSS |
-| LIST_TYPE | ORDERED | UNORDERED | Modyfikatory typu listy |
+| UNIT | px \| em \| rem \| % \| pt \| vh \| vw | Obsługiwane jednostki CSS |
+| LIST_TYPE | ORDERED \| UNORDERED | Modyfikatory typu listy |
 | ASSIGN | = | Operator przypisania |
 | LBRACE | { | Klamra otwierająca blok |
 | RBRACE | } | Klamra zamykająca blok |
