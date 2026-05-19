@@ -1,5 +1,7 @@
 BEGIN
-    /* --- PASEK NAWIGACJI (Pełna szerokość) --- */
+
+    DEFINE C_PRIMARY #598C32;
+
     STYLE PasekMenu {
         BG_COLOR = #ffffff;
         PADDING_TOP = 20px;
@@ -48,7 +50,6 @@ BEGIN
         TEXT_COLOR = #598C32;
     }
 
-    /* --- ROZWIJANE PODMENU --- */
     STYLE Podmenu {
         DISPLAY = none;
         POSITION = absolute;
@@ -81,9 +82,8 @@ BEGIN
         TEXT_COLOR = #598C32;
     }
 
-    /* --- GŁÓWNA SEKCJA (HERO) --- */
     STYLE SekcjaGlowna {
-        BG_COLOR = #1a2415; /* Ciemny, elegancki leśny grafit */
+        BG_COLOR = #1a2415;
         TEXT_COLOR = #ffffff;
         PADDING_TOP = 120px;
         PADDING_BOTTOM = 120px;
@@ -115,7 +115,6 @@ BEGIN
         MARGIN_LEFT = 20%;
     }
 
-    /* --- PRZYCISK GŁÓWNY --- */
     STYLE PrzyciskAkcji {
         BG_COLOR = #598C32;
         TEXT_COLOR = #ffffff;
@@ -137,7 +136,6 @@ BEGIN
         BOX_SHADOW = "0px 10px 30px rgba(89, 140, 50, 0.6)";
     }
 
-    /* --- SEKCJA KART (GRID POZIOMY) --- */
     STYLE SekcjaFunkcji {
         BG_COLOR = #f5f7f4;
         PADDING_TOP = 100px;
@@ -181,7 +179,12 @@ BEGIN
         MARGIN_TOP = 0px;
     }
 
-    /* --- NEWSLETTER --- */
+    STYLE IkonaKarty {
+        FONT_SIZE = 48px;
+        TEXT_COLOR = C_PRIMARY;
+        MARGIN_BOTTOM = 20px;
+    }
+
     STYLE SekcjaNewsletter {
         BG_COLOR = #598C32;
         PADDING_TOP = 80px;
@@ -233,6 +236,103 @@ BEGIN
         BG_COLOR = #2e4026;
     }
 
+    STYLE SocialSidebar {
+        POSITION = fixed;
+        TOP = 25%;
+        LEFT = "-60px";
+        TRANSITION = "left 0.3s ease";
+        BG_COLOR = C_PRIMARY;
+        PADDING_TOP = 20px;
+        PADDING_BOTTOM = 20px;
+        PADDING_LEFT = 20px;
+        PADDING_RIGHT = 20px;
+        BORDER_RADIUS = "0px 20px 20px 0px";
+        Z_INDEX = 2000;
+        DISPLAY = flex;
+        FLEX_DIRECTION = column;
+        GAP = 20px;
+    }
+
+    HOVER SocialSidebar {
+        LEFT = 0px;
+    }
+
+    STYLE IkonaSocial {
+        FONT_SIZE = 30px;
+        TEXT_COLOR = C_WHITE;
+        CURSOR = pointer;
+        TRANSITION = "transform 0.2s ease";
+    }
+
+    HOVER IkonaSocial {
+        TRANSITION = "scale(1.2)";
+    }
+
+    STYLE SekcjaTworcy {
+        BG_COLOR = C_WHITE;
+        PADDING_BOTTOM = 100px;
+        TEXT_ALIGN = center;
+    }
+
+    STYLE GridTworcy {
+        DISPLAY = flex;
+        JUSTIFY_CONTENT = center;
+        GAP = 50px;
+        WIDTH = 85%;
+        MARGIN_LEFT = auto;
+        MARGIN_RIGHT = auto;
+    }
+
+    STYLE KartaTworcy {
+        WIDTH = 350px;
+        DISPLAY = flex;
+        FLEX_DIRECTION = column;
+        ALIGN_ITEMS = center;
+        BORDER_RADIUS = 30px;
+        BOX_SHADOW = "0px 10px 40px rgba(0,0,0,0.1)";
+        PADDING_TOP = 30px;
+        PADDING_BOTTOM = 30px;
+        PADDING_LEFT = 30px;
+        PADDING_RIGHT = 30px;
+    }
+
+    STYLE ZdjecieTworcy {
+        WIDTH = 100%;
+        BORDER_RADIUS = 20px;
+        MARGIN_BOTTOM = 20px;
+    }
+
+    STYLE ZdjecieTworcy2 {
+        WIDTH = 100%;
+        BORDER_RADIUS = 20px;
+        MARGIN_BOTTOM = 20px;
+        PADDING_TOP = 6px;
+    }
+
+    STYLE NazwaTworcy {
+        FONT_SIZE = 24px;
+        FONT_WEIGHT = bold;
+        MARGIN_BOTTOM = 10px;
+    }
+
+    STYLE BioTworcy {
+        FONT_SIZE = 16px;
+        TEXT_COLOR = #5a6654;
+        MARGIN_BOTTOM = 20px;
+    }
+
+    STYLE TytulSekcjiTworcy {
+        FONT_SIZE = 48px;
+        FONT_WEIGHT = bold;
+        TEXT_COLOR = #1a2415;
+        MARGIN_BOTTOM = 60px;
+        TEXT_ALIGN = center;
+        PADDING_TOP = 40px;
+    }
+
+
+
+
 
     SECTION PasekMenu {
         DIV Logo {
@@ -268,18 +368,41 @@ BEGIN
     SECTION SekcjaFunkcji {
         DIV GridKarty {
             DIV Karta {
-                SUBTITLE TytulKarty "Live Mapa Kaucjomatów";
+                ICON "map-location-dot" IkonaKarty;
+                SUBTITLE TytulKarty "Mapa Kaucjomatów";
                 TEXT TekstKarty "Awaria? Przepełnienie? Z Kaucjapp zawsze wiesz, gdzie odnieść butelki. Sprawdzaj na żywo status maszyn w Twojej okolicy.";
             };
 
             DIV Karta {
-                SUBTITLE TytulKarty "Podziel się kaucją (P2P)";
+                ICON "handshake" IkonaKarty;
+                SUBTITLE TytulKarty "Podziel się kaucją";
                 TEXT TekstKarty "Masz 30 butelek, ale brak czasu? Wystaw ofertę w aplikacji. Zgłosi się Zbieracz, który je odbierze, a zyskiem się podzielicie.";
             };
 
             DIV Karta {
-                SUBTITLE TytulKarty "Zarobek i Ekologia";
+                ICON "leaf" IkonaKarty;
+                SUBTITLE TytulKarty "Ekologia";
                 TEXT TekstKarty "Oszczędzasz czas, zarabiasz na butelkach, które inaczej wyrzuciłbyś do śmieci, i realnie wspierasz recykling w swoim mieście.";
+            };
+        };
+    };
+
+    SECTION SekcjaTworcy {
+        TITLE TytulSekcjiTworcy "Poznaj zespół ;)";
+
+        DIV GridTworcy {
+            DIV KartaTworcy {
+                IMAGE ZdjecieTworcy "../assets/maslana.png";
+                TITLE NazwaTworcy "Kamil Maślanka";
+                TEXT BioTworcy "Frontend Developer";
+                BUTTON PrzyciskAkcji "GitHub";
+            };
+
+            DIV KartaTworcy {
+                IMAGE ZdjecieTworcy2 "../assets/maaaks.jpeg";
+                TITLE NazwaTworcy "Maksymilian Gędłek";
+                TEXT BioTworcy "Backend Developer";
+                BUTTON PrzyciskAkcji "GitHub";
             };
         };
     };
@@ -293,4 +416,11 @@ BEGIN
             BUTTON PrzyciskCiemny "Zapisz mnie";
         };
     };
+
+    DIV SocialSidebar {
+        ICON "facebook" IkonaSocial;
+        ICON "instagram" IkonaSocial;
+        ICON "linkedin" IkonaSocial;
+    };
+
 END

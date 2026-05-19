@@ -11,17 +11,24 @@ start: "BEGIN" instruction* "END"
             | put_form
             | put_div
             | put_section
+            | put_font
+            | put_icon
+            | define_var
             | block_style
 
 put_heading: "TITLE" [IDENTIFIER] STRING ";"
 put_subtitle: "SUBTITLE" [IDENTIFIER] STRING ";"
 put_paragraph: "TEXT" [IDENTIFIER] STRING ";"
 put_hyperlink: "LINK" STRING STRING ";"
-put_image: "IMAGE" STRING ";"
+put_image: "IMAGE" [IDENTIFIER] STRING ";"
 put_list: "LIST" [(ORDERED | UNORDERED)] "{" item* "}" ";"
 put_button: "BUTTON" [IDENTIFIER] STRING ";"
 put_input: "INPUT" [IDENTIFIER] STRING ";"
 put_form: "FORM" [IDENTIFIER] "{" instruction* "}" ";" -> put_form
+put_font: "FONT" STRING ";"
+put_icon: "ICON" STRING [IDENTIFIER] ";"
+
+define_var: "DEFINE" IDENTIFIER value ";"
 
 put_div: "DIV" [IDENTIFIER] "{" instruction* "}" ";" -> put_div
 put_section: "SECTION" [IDENTIFIER] "{" instruction* "}" ";" -> put_section
@@ -37,6 +44,7 @@ css_property: "BG_COLOR" -> bg_color
             | "TEXT_COLOR" -> text_color
             | "FONT_SIZE" -> font_size
             | "FONT_WEIGHT" -> font_weight
+            | "FONT_FAMILY" -> font_family
             | "TEXT_ALIGN" -> text_align
             | "MARGIN_TOP" -> margin_top
             | "MARGIN_BOTTOM" -> margin_bottom
@@ -48,18 +56,25 @@ css_property: "BG_COLOR" -> bg_color
             | "PADDING_RIGHT" -> padding_right
             | "WIDTH" -> width
             | "HEIGHT" -> height
+            | "MAX_WIDTH" -> max_width
             | "BORDER_RADIUS" -> border_radius
             | "BORDER_WIDTH" -> border_width
             | "BORDER_STYLE" -> border_style
             | "BORDER_COLOR" -> border_color
             | "DISPLAY" -> display
+            | "FLEX_DIRECTION" -> flex_direction
             | "JUSTIFY_CONTENT" -> justify_content
             | "ALIGN_ITEMS" -> align_items
+            | "GAP" -> gap
             | "OPACITY" -> opacity
             | "CURSOR" -> cursor
             | "POSITION" -> position
             | "TOP" -> top
+            | "BOTTOM" -> bottom
+            | "LEFT" -> left
+            | "RIGHT" -> right
             | "Z_INDEX" -> z_index
+            | "OVERFLOW" -> overflow
             | "BOX_SHADOW" -> box_shadow
             | "TRANSITION" -> transition
 
@@ -83,4 +98,3 @@ UNORDERED: /UNORDERED/i
 %ignore WS
 %ignore C_COMMENT
 %ignore CPP_COMMENT
-

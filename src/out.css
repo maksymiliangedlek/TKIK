@@ -1,5 +1,5 @@
-body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-* { box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; }
 .PasekMenu {
   background-color: #ffffff;
   padding-top: 20px;
@@ -154,6 +154,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
   color: #5a6654;
   margin-top: 0px;
 }
+.IkonaKarty {
+  font-size: 48px;
+  color: #598C32;
+  margin-bottom: 20px;
+}
 .SekcjaNewsletter {
   background-color: #598C32;
   padding-top: 80px;
@@ -198,4 +203,86 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
 }
 .PrzyciskCiemny:hover {
   background-color: #2e4026;
+}
+.SocialSidebar {
+  position: fixed;
+  top: 25%;
+  left: -60px;
+  transition: left 0.3s ease;
+  background-color: #598C32;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 0px 20px 20px 0px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.SocialSidebar:hover {
+  left: 0px;
+}
+.IkonaSocial {
+  font-size: 30px;
+  color: C_WHITE;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.IkonaSocial:hover {
+  transition: scale(1.2);
+}
+.SekcjaTworcy {
+  background-color: C_WHITE;
+  padding-bottom: 100px;
+  text-align: center;
+}
+.GridTworcy {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.KartaTworcy {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  box-shadow: 0px 10px 40px rgba(0,0,0,0.1);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.ZdjecieTworcy {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.ZdjecieTworcy2 {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  padding-top: 6px;
+}
+.NazwaTworcy {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.BioTworcy {
+  font-size: 16px;
+  color: #5a6654;
+  margin-bottom: 20px;
+}
+.TytulSekcjiTworcy {
+  font-size: 48px;
+  font-weight: bold;
+  color: #1a2415;
+  margin-bottom: 60px;
+  text-align: center;
+  padding-top: 40px;
 }
