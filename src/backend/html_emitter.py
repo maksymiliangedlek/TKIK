@@ -123,7 +123,6 @@ class HtmlEmitter:
         if not is_dataclass(node):
             raise TypeError(f"Expected AST dataclass node, got: {type(node)}")
 
-        # Head-only / metadata nodes — no HTML output in body
         if isinstance(node, (ast.Font, ast.VariableDefinition)):
             return ""
 

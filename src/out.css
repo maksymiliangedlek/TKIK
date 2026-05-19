@@ -154,6 +154,11 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; }
   color: #5a6654;
   margin-top: 0px;
 }
+.IkonaKarty {
+  font-size: 48px;
+  color: #598C32;
+  margin-bottom: 20px;
+}
 .SekcjaNewsletter {
   background-color: #598C32;
   padding-top: 80px;
@@ -199,11 +204,6 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; }
 .PrzyciskCiemny:hover {
   background-color: #2e4026;
 }
-.IkonaKarty {
-  font-size: 48px;
-  color: #598C32;
-  margin-bottom: 20px;
-}
 .SocialSidebar {
   position: fixed;
   top: 25%;
@@ -228,6 +228,9 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; }
   color: C_WHITE;
   cursor: pointer;
   transition: transform 0.2s ease;
+}
+.IkonaSocial:hover {
+  transition: scale(1.2);
 }
 .SekcjaTworcy {
   background-color: C_WHITE;
@@ -282,7 +285,4 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; }
   margin-bottom: 60px;
   text-align: center;
   padding-top: 40px;
-}
-.IkonaSocial:hover {
-  transition: scale(1.2);
 }
