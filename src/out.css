@@ -1,5 +1,5 @@
-body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-* { box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; }
 .PasekMenu {
   background-color: #ffffff;
   padding-top: 20px;
@@ -198,4 +198,37 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
 }
 .PrzyciskCiemny:hover {
   background-color: #2e4026;
+}
+.IkonaKarty {
+  font-size: 48px;
+  color: #598C32;
+  margin-bottom: 20px;
+}
+.SocialSidebar {
+  position: fixed;
+  top: 25%;
+  right: 0px;
+  transition: right 0.3s ease;
+  background-color: #598C32;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px 0px 0px 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.SocialSidebar:hover {
+  right: 0px;
+}
+.IkonaSocial {
+  font-size: 30px;
+  color: C_WHITE;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.IkonaSocial:hover {
+  transition: scale(1.2);
 }

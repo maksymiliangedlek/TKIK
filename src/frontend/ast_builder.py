@@ -55,6 +55,9 @@ class AstBuilder(Transformer):
         return Link(url=url, label=label)
 
     def put_image(self, args):
+        if len(args) == 2:
+            class_name, src = args
+            return Image(src=src, class_name=class_name)
         (src,) = args
         return Image(src=src)
 
@@ -64,6 +67,21 @@ class AstBuilder(Transformer):
             return Button(text=text, class_name=class_name)
         (text,) = args
         return Button(text=text)
+
+    def put_font(self, args):
+        (family,) = args
+        return Font(family=family)
+
+    def put_icon(self, args):
+        if len(args) == 2:
+            icon_class, class_name = args
+            return Icon(icon_class=icon_class, class_name=class_name)
+        (icon_class,) = args
+        return Icon(icon_class=icon_class)
+
+    def define_var(self, args):
+        name, value = args
+        return VariableDefinition(name=name, value=str(value))
 
     def item(self, args):
         (text,) = args
@@ -90,7 +108,6 @@ class AstBuilder(Transformer):
         if args and isinstance(args[0], str):
             class_name = args[0]
             children = args[1:]
-
         return Form(class_name=class_name, children=list(children))
 
     def put_div(self, args):
@@ -114,6 +131,7 @@ class AstBuilder(Transformer):
     def text_color(self, _): return "color"
     def font_size(self, _): return "font-size"
     def font_weight(self, _): return "font-weight"
+    def font_family(self, _): return "font-family"
     def text_align(self, _): return "text-align"
 
     def margin_top(self, _): return "margin-top"
@@ -128,6 +146,7 @@ class AstBuilder(Transformer):
 
     def width(self, _): return "width"
     def height(self, _): return "height"
+    def max_width(self, _): return "max-width"
 
     def border_radius(self, _): return "border-radius"
     def border_width(self, _): return "border-width"
@@ -135,13 +154,19 @@ class AstBuilder(Transformer):
     def border_color(self, _): return "border-color"
 
     def display(self, _): return "display"
+    def flex_direction(self, _): return "flex-direction"
     def justify_content(self, _): return "justify-content"
     def align_items(self, _): return "align-items"
+    def gap(self, _): return "gap"
     def opacity(self, _): return "opacity"
     def cursor(self, _): return "cursor"
     def position(self, _): return "position"
     def top(self, _): return "top"
+    def bottom(self, _): return "bottom"
+    def left(self, _): return "left"
+    def right(self, _): return "right"
     def z_index(self, _): return "z-index"
+    def overflow(self, _): return "overflow"
     def box_shadow(self, _): return "box-shadow"
     def transition(self, _): return "transition"
 
@@ -164,11 +189,15 @@ class AstBuilder(Transformer):
     # ---- document root ----
     def start(self, children):
         styles: list[StyleRule] = []
-        body = []
+        body: list[Node] = []
+        variables: dict[str, str] = {}
+
         for node in children:
-            if isinstance(node, StyleRule):
+            if isinstance(node, VariableDefinition):
+                variables[node.name] = node.value
+            elif isinstance(node, StyleRule):
                 styles.append(node)
             else:
                 body.append(node)
-        return Document(head=Head(styles=styles), body=body)
 
+        return Document(head=Head(styles=styles), body=body, variables=variables)

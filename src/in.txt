@@ -1,4 +1,7 @@
 BEGIN
+
+    DEFINE C_PRIMARY #598C32;
+
     /* --- PASEK NAWIGACJI (Pełna szerokość) --- */
     STYLE PasekMenu {
         BG_COLOR = #ffffff;
@@ -232,7 +235,40 @@ BEGIN
     HOVER PrzyciskCiemny {
         BG_COLOR = #2e4026;
     }
+    STYLE IkonaKarty { FONT_SIZE = 48px; TEXT_COLOR = C_PRIMARY; MARGIN_BOTTOM = 20px; }
 
+    STYLE SocialSidebar {
+        POSITION = fixed;
+        TOP = 25%;
+        RIGHT = "0px";
+        TRANSITION = "right 0.3s ease";
+        BG_COLOR = C_PRIMARY;
+        PADDING_TOP = 20px;
+        PADDING_BOTTOM = 20px;
+        PADDING_LEFT = 20px;
+        PADDING_RIGHT = 20px;
+        BORDER_RADIUS = "20px 0px 0px 20px";
+        Z_INDEX = 2000;
+        DISPLAY = flex;
+        FLEX_DIRECTION = column;
+        GAP = 20px;
+    }
+
+    /* Efekt wysunięcia przy najechaniu na sam panel */
+    HOVER SocialSidebar {
+        RIGHT = 0px;
+    }
+
+    STYLE IkonaSocial {
+        FONT_SIZE = 30px;
+        TEXT_COLOR = C_WHITE;
+        CURSOR = pointer;
+        TRANSITION = "transform 0.2s ease";
+    }
+
+    HOVER IkonaSocial {
+        TRANSITION = "scale(1.2)";
+    }
 
     SECTION PasekMenu {
         DIV Logo {
@@ -268,17 +304,20 @@ BEGIN
     SECTION SekcjaFunkcji {
         DIV GridKarty {
             DIV Karta {
-                SUBTITLE TytulKarty "Live Mapa Kaucjomatów";
+                ICON "map-location-dot" IkonaKarty;
+                SUBTITLE TytulKarty "Mapa Kaucjomatów";
                 TEXT TekstKarty "Awaria? Przepełnienie? Z Kaucjapp zawsze wiesz, gdzie odnieść butelki. Sprawdzaj na żywo status maszyn w Twojej okolicy.";
             };
 
             DIV Karta {
-                SUBTITLE TytulKarty "Podziel się kaucją (P2P)";
+                ICON "handshake" IkonaKarty;
+                SUBTITLE TytulKarty "Podziel się kaucją";
                 TEXT TekstKarty "Masz 30 butelek, ale brak czasu? Wystaw ofertę w aplikacji. Zgłosi się Zbieracz, który je odbierze, a zyskiem się podzielicie.";
             };
 
             DIV Karta {
-                SUBTITLE TytulKarty "Zarobek i Ekologia";
+                ICON "leaf" IkonaKarty;
+                SUBTITLE TytulKarty "Ekologia";
                 TEXT TekstKarty "Oszczędzasz czas, zarabiasz na butelkach, które inaczej wyrzuciłbyś do śmieci, i realnie wspierasz recykling w swoim mieście.";
             };
         };
@@ -292,5 +331,11 @@ BEGIN
             INPUT PoleEmail "Twój adres e-mail...";
             BUTTON PrzyciskCiemny "Zapisz mnie";
         };
+    };
+
+    DIV SocialSidebar {
+        ICON "facebook" IkonaSocial;
+        ICON "instagram" IkonaSocial;
+        ICON "linkedin" IkonaSocial;
     };
 END
