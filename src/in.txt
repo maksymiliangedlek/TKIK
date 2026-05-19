@@ -240,14 +240,14 @@ BEGIN
     STYLE SocialSidebar {
         POSITION = fixed;
         TOP = 25%;
-        RIGHT = "0px";
-        TRANSITION = "right 0.3s ease";
+        LEFT = "-60px";
+        TRANSITION = "left 0.3s ease";
         BG_COLOR = C_PRIMARY;
         PADDING_TOP = 20px;
         PADDING_BOTTOM = 20px;
         PADDING_LEFT = 20px;
         PADDING_RIGHT = 20px;
-        BORDER_RADIUS = "20px 0px 0px 20px";
+        BORDER_RADIUS = "0px 20px 20px 0px";
         Z_INDEX = 2000;
         DISPLAY = flex;
         FLEX_DIRECTION = column;
@@ -256,7 +256,7 @@ BEGIN
 
     /* Efekt wysunięcia przy najechaniu na sam panel */
     HOVER SocialSidebar {
-        RIGHT = 0px;
+        LEFT = 0px;
     }
 
     STYLE IkonaSocial {
@@ -264,6 +264,69 @@ BEGIN
         TEXT_COLOR = C_WHITE;
         CURSOR = pointer;
         TRANSITION = "transform 0.2s ease";
+    }
+
+    /* --- SEKCJA TWÓRCY --- */
+    STYLE SekcjaTworcy {
+        BG_COLOR = C_WHITE;
+        PADDING_BOTTOM = 100px;
+        TEXT_ALIGN = center;
+    }
+
+    STYLE GridTworcy {
+        DISPLAY = flex;
+        JUSTIFY_CONTENT = center; /* Zamiast paddingu, używamy flexa do centrowania */
+        GAP = 50px;              /* Używamy GAP do odstępów */
+        WIDTH = 85%;
+        MARGIN_LEFT = auto;
+        MARGIN_RIGHT = auto;
+    }
+
+    STYLE KartaTworcy {
+        WIDTH = 350px;           /* Szerokość telefonu */
+        DISPLAY = flex;
+        FLEX_DIRECTION = column; /* Układ pionowy wewnątrz karty */
+        ALIGN_ITEMS = center;
+        BORDER_RADIUS = 30px;
+        BOX_SHADOW = "0px 10px 40px rgba(0,0,0,0.1)";
+        PADDING_TOP = 30px;
+        PADDING_BOTTOM = 30px;          /* Używamy dla wygody treści, nie dla layoutu */
+        PADDING_LEFT = 30px;          /* Używamy dla wygody treści, nie dla layoutu */
+        PADDING_RIGHT = 30px;          /* Używamy dla wygody treści, nie dla layoutu */
+    }
+
+    STYLE ZdjecieTworcy {
+        WIDTH = 100%;
+        BORDER_RADIUS = 20px;
+        MARGIN_BOTTOM = 20px;
+    }
+
+    STYLE ZdjecieTworcy2 {
+        WIDTH = 100%;
+        BORDER_RADIUS = 20px;
+        MARGIN_BOTTOM = 20px;
+        PADDING_TOP = 6px;
+    }
+
+    STYLE NazwaTworcy {
+        FONT_SIZE = 24px;
+        FONT_WEIGHT = bold;
+        MARGIN_BOTTOM = 10px;
+    }
+
+    STYLE BioTworcy {
+        FONT_SIZE = 16px;
+        TEXT_COLOR = #5a6654;
+        MARGIN_BOTTOM = 20px;
+    }
+
+    STYLE TytulSekcjiTworcy {
+        FONT_SIZE = 48px;        /* Zwiększamy czcionkę */
+        FONT_WEIGHT = bold;
+        TEXT_COLOR = #1a2415;
+        MARGIN_BOTTOM = 60px;    /* To zrobi odstęp między napisem a telefonami */
+        TEXT_ALIGN = center;
+        PADDING_TOP = 40px;
     }
 
     HOVER IkonaSocial {
@@ -319,6 +382,28 @@ BEGIN
                 ICON "leaf" IkonaKarty;
                 SUBTITLE TytulKarty "Ekologia";
                 TEXT TekstKarty "Oszczędzasz czas, zarabiasz na butelkach, które inaczej wyrzuciłbyś do śmieci, i realnie wspierasz recykling w swoim mieście.";
+            };
+        };
+    };
+
+    SECTION SekcjaTworcy {
+        TITLE TytulSekcjiTworcy "Poznaj zespół ;)";
+
+        DIV GridTworcy {
+            /* Twórca 1 */
+            DIV KartaTworcy {
+                IMAGE ZdjecieTworcy "../assets/maslana.png";
+                TITLE NazwaTworcy "Kamil Maślanka";
+                TEXT BioTworcy "Frontend Developer";
+                BUTTON PrzyciskAkcji "GitHub";
+            };
+
+            /* Twórca 2 */
+            DIV KartaTworcy {
+                IMAGE ZdjecieTworcy2 "../assets/maaaks.jpeg";
+                TITLE NazwaTworcy "Maksymilian Gędłek";
+                TEXT BioTworcy "Backend Developer";
+                BUTTON PrzyciskAkcji "GitHub";
             };
         };
     };
