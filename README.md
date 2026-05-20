@@ -17,7 +17,7 @@
 -Generator plików statycznych HTML i CSS
 
 ### Język implementacji:
-- Python, parser **Lark** (`src/frontend/grammar.lark`)
+- Python, parser **Lark** 
 
 ### Architektura transpilera
 
