@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Język do budowania komponentów HTML i CSS</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <form method="post" action="/">
+      <header>
+        <div class="header-content">
+          <h1>Język do budowania komponentów HTML i CSS</h1>
+          <p>
+            Pisz naszym językiem po lewej, kliknij Kompiluj, zobacz HTML / CSS /
+            Podgląd po prawej.
+          </p>
+        </div>
+        <div class="compile-button">
+          <button type="submit">Kompiluj</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel">
+          <h2>Kod</h2>
+          <div class="editor">
+            <div class="gutter" id="gutter" aria-hidden="true"></div>
+            <textarea name="source" id="source" spellcheck="false">
+{{SOURCE}}</textarea
+            >
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="tabs">
+            <button type="button" class="tab active" data-tab="html">
+              HTML
+            </button>
+            <button type="button" class="tab" data-tab="css">CSS</button>
+            <button type="button" class="tab" data-tab="preview">
+              Podgląd
+            </button>
+          </div>
+          <pre id="htmlOut" class="out active">{{HTML}}</pre>
+          <pre id="cssOut" class="out">{{CSS}}</pre>
+          <iframe
+            id="previewOut"
+            class="out preview"
+            srcdoc="{{PREVIEW}}"
+          ></iframe>
+        </section>
+      </main>
+
+      <footer class="errors">
+        <h2>Errors</h2>
+        <div id="errorList">{{ERRORS}}</div>
+      </footer>
+    </form>
+
+    <script>
+      window.ERROR_LINES = "{{ERROR_LINES}}";
+    </script>
+    <script src="/static/tabs.js"></script>
+  </body>
+</html>
