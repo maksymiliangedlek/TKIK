@@ -241,4 +241,25 @@ UNORDERED: /UNORDERED/i
 %ignore C_COMMENT
 %ignore CPP_COMMENT
 
+```
+---
+
+### Informacje o pakietach zewnętrznych i wymaganiach
+
+Do uruchomienia transpilera wymagane jest środowisko **Python (wersja 3.10 lub nowsza)**. Projekt wykorzystuje następujące zależności zewnętrzne:
+- **Lark**.
+
+Instalacja wymaganych pakietów:
+```bash
+pip install lark
+```
+### Instrukcja obsługi
+Wykonanie poniższej komendy odpala webapp na którym można live kompilować nasz język/
+```bash
+python3 -m src.webapp
+```
+### Przykład użycia
+Znajduje się w pliku src.in.text
+
+
 
